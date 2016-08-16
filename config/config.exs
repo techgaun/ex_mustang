@@ -2,6 +2,15 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :ex_mustang, ExMustang.Standup,
+  time_of_day: "10:30" # specify time in
+
+config :ex_mustang, ExMustang.Github,
+  pr: ["techgaun/ex_mustang"]
+
+config :ex_mustang, ExMustang.Quote,
+  quote_src: "files/quotes.txt"
+
 config :ex_mustang, ExMustang.Robot,
   adapter: Hedwig.Adapters.Slack,
   name: "mustang",
