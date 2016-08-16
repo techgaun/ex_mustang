@@ -18,3 +18,10 @@ You can run this bot as below:
 export SLACK_API_TOKEN="<SLACK_API_TOKEN>"
 mix run --no-halt
 ```
+
+### Responders
+
+```shell
+<bot_nick> help - Displays help message
+<bot_nick> quote - Displays random quote
+```

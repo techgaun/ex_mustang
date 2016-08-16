@@ -2,13 +2,13 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :ex_mustang, ExMustang.Standup,
+config :ex_mustang, ExMustang.Responders.Standup,
   time_of_day: "10:30" # specify time in
 
-config :ex_mustang, ExMustang.Github,
+config :ex_mustang, ExMustang.Responders.Github,
   pr: ["techgaun/ex_mustang"]
 
-config :ex_mustang, ExMustang.Quote,
+config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt"
 
 config :ex_mustang, ExMustang.Robot,
@@ -18,8 +18,7 @@ config :ex_mustang, ExMustang.Robot,
   token: System.get_env("SLACK_API_TOKEN"),
   responders: [
     {Hedwig.Responders.Help, []},
-    {Hedwig.Responders.GreatSuccess, []},
-    {Hedwig.Responders.ShipIt, []}
+    {ExMustang.Responders.Quote, []}
   ]
 
 
