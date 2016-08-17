@@ -1,12 +1,14 @@
 # ex_mustang
 
-> A simple, clueless bot (that does nothing much right now)
+> A simple, clueless bot
 
 ![Mustang](images/mustang.jpg)
 
 ExMustang is a bot for Slack written in Elixir.
 
 _Warning: This is a work in progress._
+
+![Example](images/example.png)
 
 ### Setup
 
@@ -27,7 +29,7 @@ You can configure github token by setting `GITHUB_TOKEN`. Also, you can pass lis
 
 #### Standup Reminder
 
-The standup reminder reminds us when its standup time. Our nature is that we either forget track of time or are too lazy to remember about it :P You can configure message and other bunch of stuffs on [config](config/config.exs#L5-L9)
+The standup reminder reminds us when its standup time. Our nature is that we either forget track of time or are too lazy to remember about it. This does not make you better at attending standup but is more of a satire for us. You can configure message and other bunch of stuffs on [config](config/config.exs#L5-L9)
 
 ### Responders
 
@@ -35,3 +37,9 @@ The standup reminder reminds us when its standup time. Our nature is that we eit
 mustang help - Displays help message
 quote - Displays random quote
 ```
+
+### About Mustang
+
+Mustang (pronounced like `moostang` not like the `Ford Mustang`; I don't know phonetics) is my best friend whom I had to leave back in Nepal. After surviving [April 2015 Earthquake](https://en.wikipedia.org/wiki/April_2015_Nepal_earthquake), we lived together for a while and I had to leave him back in Nepal. Below is the pic post-earthquake.
+
+![Mustang and Me](images/me_mustang.jpg)
