@@ -3,10 +3,12 @@
 use Mix.Config
 
 config :ex_mustang, ExMustang.Responders.Standup,
-  time_of_day: "10:30" # specify time in
+  time_of_day: "30 10 * * 1-5"
 
 config :ex_mustang, ExMustang.Responders.Github,
-  pr: ["techgaun/ex_mustang"]
+  repos: ["techgaun/ex_mustang"],
+  access_token: System.get_env("GITHUB_TOKEN"),
+  schedule: "0 4/* * * *"
 
 config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt"

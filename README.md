@@ -19,6 +19,10 @@ export SLACK_API_TOKEN="<SLACK_API_TOKEN>"
 mix run --no-halt
 ```
 
+#### Github Pull Requests Watcher
+
+You can configure github token by setting `GITHUB_TOKEN`. Also, you can pass list of repos to watch by updating [config](config/config.exs).
+
 ### Responders
 
 ```shell

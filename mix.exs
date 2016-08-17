@@ -29,7 +29,9 @@ defmodule ExMustang.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:hedwig_slack, "~> 0.1"}
+      {:hedwig_slack, "~> 0.1"},
+      {:tentacat, "~> 0.5"},
+      {:quantum, ">= 1.7.1"}
     ]
   end
 end
