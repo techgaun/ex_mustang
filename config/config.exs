@@ -3,12 +3,14 @@
 use Mix.Config
 
 config :ex_mustang, ExMustang.Responders.Standup,
-  time_of_day: "30 10 * * 1-5"
+  time_of_day: "30 10 * * 1-5",
+  slack_channel: System.get_env("STANDUP_CHANNEL") || "general"
 
 config :ex_mustang, ExMustang.Responders.Github,
   repos: ["techgaun/ex_mustang"],
   access_token: System.get_env("GITHUB_TOKEN"),
-  schedule: "0 4/* * * *"
+  schedule: "0 4/* * * *",
+  slack_channel: System.get_env("GH_CHANNEL") || "general"
 
 config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt"

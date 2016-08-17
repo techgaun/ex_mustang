@@ -2,13 +2,13 @@ defmodule ExMustang.Responders.Quote do
   @moduledoc """
   Random Quote, FTW!
 
-  Sends random message each day or when someone says `mustang quote`
+  Sends random message each day or when someone says `quote`
   """
   use Hedwig.Responder
-  
+
   @quotes_file Application.get_env(:ex_mustang, ExMustang.Responders.Quote)[:quote_src]
   @usage """
-  mustang quote - Replies with a random quote.
+  quote - Replies with a random quote.
   """
   hear ~r/quote(!)?/i, msg do
     reply msg, random(quotes)
