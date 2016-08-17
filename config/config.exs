@@ -4,7 +4,9 @@ use Mix.Config
 
 config :ex_mustang, ExMustang.Responders.Standup,
   time_of_day: "30 10 * * 1-5",
-  slack_channel: System.get_env("STANDUP_CHANNEL") || "general"
+  slack_channel: System.get_env("STANDUP_CHANNEL") || "general",
+  suffix: ["folks", "hackers", "peeps", "avengers"],
+  msg: "Standup time"
 
 config :ex_mustang, ExMustang.Responders.Github,
   repos: ["techgaun/ex_mustang"],
