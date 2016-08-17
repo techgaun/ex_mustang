@@ -2,7 +2,7 @@ defmodule ExMustang.Responders.Quote do
   @moduledoc """
   Random Quote, FTW!
 
-  Sends random message each day or when someone says `quote`
+  Sends random message when someone says `quote`
   """
   use Hedwig.Responder
 

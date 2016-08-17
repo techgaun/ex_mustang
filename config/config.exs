@@ -27,6 +27,8 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.Quote, []}
   ]
 
+config :quantum, timezone: :local
+
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

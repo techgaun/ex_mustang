@@ -12,10 +12,17 @@ defmodule ExMustang do
       # worker(ExMustang.Worker, [arg1, arg2, arg3]),
       worker(ExMustang.Robot, [])
     ]
-
+    add_jobs()
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ExMustang.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  def add_jobs do
+    Quantum.add_job(:standup, %Quantum.Job{
+      schedule: Application.get_env(:ex_mustang, ExMustang.Responders.Standup)[:time_of_day],
+      task: fn -> ExMustang.Responders.Standup.run end
+    })
   end
 end
