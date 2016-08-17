@@ -11,8 +11,10 @@ config :ex_mustang, ExMustang.Responders.Standup,
 config :ex_mustang, ExMustang.Responders.Github,
   repos: ["techgaun/ex_mustang"],
   access_token: System.get_env("GITHUB_TOKEN"),
-  schedule: "0 4/* * * *",
-  slack_channel: System.get_env("GH_CHANNEL") || "general"
+  schedule: "0 */1 * * *",
+  slack_channel: System.get_env("GH_CHANNEL") || "general",
+  created_time_threshold: 10800, # no old than 3 hours
+  updated_time_threshold: 3600 # no old than 1 hour
 
 config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt"

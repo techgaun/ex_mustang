@@ -19,13 +19,19 @@ export SLACK_API_TOKEN="<SLACK_API_TOKEN>"
 mix run --no-halt
 ```
 
+### Scheduled Notifications
+
 #### Github Pull Requests Watcher
 
-You can configure github token by setting `GITHUB_TOKEN`. Also, you can pass list of repos to watch by updating [config](config/config.exs).
+You can configure github token by setting `GITHUB_TOKEN`. Also, you can pass list of repos to watch by updating [config](config/config.exs#L11-L17). There are bunch of other stuffs you can configure such as schedule (which follows cron format), slack channel and thresholds.
+
+#### Standup Reminder
+
+The standup reminder reminds us when its standup time. Our nature is that we either forget track of time or are too lazy to remember about it :P You can configure message and other bunch of stuffs on [config](config/config.exs#L5-L9)
 
 ### Responders
 
 ```shell
-<bot_nick> help - Displays help message
-<bot_nick> quote - Displays random quote
+mustang help - Displays help message
+quote - Displays random quote
 ```

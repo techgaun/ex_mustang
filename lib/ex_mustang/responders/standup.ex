@@ -10,7 +10,7 @@ defmodule ExMustang.Responders.Standup do
     msg = %Hedwig.Message{
       type: "message",
       room: "#{config[:slack_channel]}",
-      text: "#{config[:msg]}, #{Hedwig.Responder.random(config[:suffix])}!",
+      text: "@channel: #{config[:msg]}, #{Hedwig.Responder.random(config[:suffix])}!",
     }
     pid = Hedwig.whereis("mustang")
     Hedwig.Robot.send(pid, msg)

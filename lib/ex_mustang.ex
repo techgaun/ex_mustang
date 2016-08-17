@@ -24,5 +24,10 @@ defmodule ExMustang do
       schedule: Application.get_env(:ex_mustang, ExMustang.Responders.Standup)[:time_of_day],
       task: fn -> ExMustang.Responders.Standup.run end
     })
+
+    Quantum.add_job(:github_pr, %Quantum.Job{
+      schedule: Application.get_env(:ex_mustang, ExMustang.Responders.Github)[:schedule],
+      task: fn -> ExMustang.Responders.Github.run end
+    })
   end
 end
