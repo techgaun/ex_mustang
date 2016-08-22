@@ -1,0 +1,21 @@
+Q: Why did the web designer drown? A: She didn’t know if she should float:left or float:right.
+Q: Why was the web developer fired from his job? A: He was getting too Sassy.
+Q: Why was the web developer fired from her job? A: She did Less every day.
+Q: What did the southern web developer say when he found out his team stopped using version control? A: Y’all better Git!
+Q: Why did the developer stay home from work? A: She had a code!
+Q: How did the scrawny web developer put on some muscle? A: He started using flexbox (with float fallbacks for older versions of IE).
+Q: Why was the JavaScript reality show cancelled after only one episode? A: People thought it seemed scripted.
+A junior developer panicked when he realized he didn’t know how to initiate a secure shell session to a remote machine. As he became more upset and his voice grew louder, his boss — the senior developer — took notice and tried to quiet him down. With his finger pressed to the young developers lips, the senior developer calmly whispered, “SSH.
+Q: Why does no one like jokes about descriptions, keywords, or character encodings? A: They’re too ‘meta’.
+Q: Why was the iOS developer always so sleepy? A: She wasn’t given any Java.
+Q: How can you tell that a web developer is working? A: You can hear him Grunting!
+Q: Why don't web developers get along with others? A: They're too MEAN.
+Q: Why do RESTful developers smell? A: Because they don't use SOAP.
+Q: Why did the IP cross the subnet? A: Because the NAT said to!
+Q: Why couldn’t the variable enter the JavaScript store? A: It was (Closured())!
+Q: Why was the class upset that its parent died? A: Because it wouldn’t be getting the inheritance!
+What was the web developer arrested for? He consumed too much Java and started Flashing everything and everyone. Not only that, when he was arrested, he insulted the police, yelling “What the HTML!” They just read him the standard PHP script, arrayed him, and pushed him into a cell. He popped up later in court where the judge emptied his stack.
+Q: How does JavaScript call its mommy? A: ecMA
+Q: What’s the joking equivalent to flat design? A: Flat humor!
+Q: Why did the web designer storm out of the restaurant? A: She was offended by the table layout.
+Some people, when confronted with a problem, think, “I know, I’ll use mod_rewrite.” Now they have 500 problems.
