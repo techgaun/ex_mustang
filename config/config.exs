@@ -26,10 +26,15 @@ config :ex_mustang, ExMustang.Robot,
   token: System.get_env("SLACK_API_TOKEN"),
   responders: [
     {Hedwig.Responders.Help, []},
+    {ExMustang.Responders.GMap, []},
     {ExMustang.Responders.Quote, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
+
+config :ex_google,
+  api_key: System.get_env("GOOGLE_API_KEY"),
+  output: "json"
 
 
 # This configuration is loaded before any dependency and is restricted

@@ -27,8 +27,8 @@ defmodule ExMustang.Responders.Github do
       updated_time = pr["updated_at"]
         |> Timex.parse!("{ISO:Extended}")
       current_time = Timex.now
-      created_diff = Timex.diff(current_time, created_time)
-      updated_diff = Timex.diff(current_time, updated_time)
+      created_diff = Timex.diff(current_time, created_time, :seconds)
+      updated_diff = Timex.diff(current_time, updated_time, :seconds)
       if updated_diff > config[:updated_time_threshold] and created_diff > config[:created_time_threshold] do
         title = pr["title"]
         text = "PR #{title}(#{link}) is open since a while. You better be watching it!"

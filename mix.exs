@@ -14,7 +14,7 @@ defmodule ExMustang.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :hedwig_slack, :quantum, :tentacat],
+    [applications: [:logger, :hedwig_slack, :quantum, :tentacat, :ex_google],
      mod: {ExMustang, []}]
   end
 
@@ -32,7 +32,8 @@ defmodule ExMustang.Mixfile do
       {:hedwig_slack, "~> 1.0"},
       {:tentacat, "~> 0.5"},
       {:quantum, "~> 1.8.1"},
-      {:timex, "~> 3.1"}
+      {:timex, "~> 3.1"},
+      {:ex_google, "~> 0.1"}
     ]
   end
 end

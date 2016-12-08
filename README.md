@@ -21,6 +21,16 @@ export SLACK_API_TOKEN="<SLACK_API_TOKEN>"
 mix run --no-halt
 ```
 
+A sample runner configuration looks like below:
+
+```shell
+export SLACK_API_TOKEN="<SLACK_API_TOKEN<"
+export GITHUB_TOKEN="<GITHUB_TOKEN>"
+export GOOGLE_API_KEY="<GOOGLE_API_KEY>"
+export STANDUP_CHANNEL="G02KTGABR"
+export GH_CHANNEL="G02KTGABR"
+```
+
 ### Scheduled Notifications
 
 #### Github Pull Requests Watcher
@@ -33,8 +43,16 @@ The standup reminder reminds us when its standup time. Our nature is that we eit
 
 ### Responders
 
+Currently, there are two responders:
+
+One is `ExMustang.Responders.GMap` which gives you search result for your search queries.
+Other is `ExMustang.Responders.Quote` which gives you random quote.
+
+For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
+
 ```shell
 mustang help - Displays help message
+gmap <search_term> - Replies with the information from google places/maps.
 quote - Displays random quote
 ```
 
