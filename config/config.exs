@@ -29,7 +29,7 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.Quote, []}
   ]
 
-config :quantum, timezone: :local
+config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
 
 
 # This configuration is loaded before any dependency and is restricted
