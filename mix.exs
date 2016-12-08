@@ -31,7 +31,8 @@ defmodule ExMustang.Mixfile do
     [
       {:hedwig_slack, "~> 1.0"},
       {:tentacat, "~> 0.5"},
-      {:quantum, "~> 1.8.1"}
+      {:quantum, "~> 1.8.1"},
+      {:timex, "~> 3.1"}
     ]
   end
 end

@@ -10,7 +10,7 @@ defmodule ExMustang.Responders.Quote do
   @usage """
   quote - Replies with a random quote.
   """
-  hear ~r/quote(!)?/i, msg do
+  hear ~r/^quote(!)?$/i, msg do
     reply msg, random(quotes)
   end
 

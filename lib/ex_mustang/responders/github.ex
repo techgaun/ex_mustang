@@ -4,6 +4,8 @@ defmodule ExMustang.Responders.Github do
   and sends message about the PRs that are open for too long.
   """
 
+  import ExMustang.Utils
+
   def run do
     gh_client = Tentacat.Client.new(%{access_token: config[:access_token]})
     config[:repos]
@@ -21,10 +23,10 @@ defmodule ExMustang.Responders.Github do
     if state === "open" do
       link = pr["html_url"]
       created_time = pr["created_at"]
-        |> Timex.parse!("{ISO}")
+        |> Timex.parse!("{ISO:Extended}")
       updated_time = pr["updated_at"]
-        |> Timex.parse!("{ISO}")
-      current_time = Timex.DateTime.now
+        |> Timex.parse!("{ISO:Extended}")
+      current_time = Timex.now
       created_diff = Timex.diff(current_time, created_time)
       updated_diff = Timex.diff(current_time, updated_time)
       if updated_diff > config[:updated_time_threshold] and created_diff > config[:created_time_threshold] do
@@ -41,8 +43,7 @@ defmodule ExMustang.Responders.Github do
       room: "#{config[:slack_channel]}",
       text: text
     }
-    pid = Hedwig.whereis("mustang")
-    Hedwig.Robot.send(pid, msg)
+    send(msg)
   end
 
   defp config, do: Application.get_env(:ex_mustang, ExMustang.Responders.Github)
