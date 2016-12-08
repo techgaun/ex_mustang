@@ -298,3 +298,4 @@ Chuck Norris writes directly in binary. He then writes the source code as docume
 Chuck Norris once shifted a bit so hard, it ended up on a different computer.
 Q: What is Chuck Norris's favorite javascript framework? A: Knockout.js
 A programmer walks into a bar and orders 1.00000000001000000...8971875 root beers. The bartender says, "I'll have to charge you extra; that's a root beer float". And the programmer says, "In that case, make it a double".
+Programs must be written for people to read, and only incidentally for machines to execute.
