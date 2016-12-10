@@ -48,6 +48,7 @@ Currently, there are three responders and these should ideally work with any Hed
 - `ExMustang.Responders.GMap` - gives you google maps search result for your search queries.
 - `ExMustang.Responders.Quote` - gives you random funny quote
 - `ExMustang.Responders.Slap` - slaps another user
+- `ExMustang.Responders.Time` - gives time on given timezone (without timezone, uses local timezone of machine ExMustang is running on)
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 

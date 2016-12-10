@@ -28,7 +28,8 @@ config :ex_mustang, ExMustang.Robot,
     {Hedwig.Responders.Help, []},
     {ExMustang.Responders.GMap, []},
     {ExMustang.Responders.Quote, []},
-    {ExMustang.Responders.Slap, []}
+    {ExMustang.Responders.Slap, []},
+    {ExMustang.Responders.Time, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
