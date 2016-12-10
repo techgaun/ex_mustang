@@ -43,17 +43,20 @@ The standup reminder reminds us when its standup time. Our nature is that we eit
 
 ### Responders
 
-Currently, there are two responders:
+Currently, there are three responders and these should ideally work with any Hedwig adapters:
 
-One is `ExMustang.Responders.GMap` which gives you search result for your search queries.
-Other is `ExMustang.Responders.Quote` which gives you random quote.
+- `ExMustang.Responders.GMap` - gives you google maps search result for your search queries.
+- `ExMustang.Responders.Quote` - gives you random funny quote
+- `ExMustang.Responders.Slap` - slaps another user
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
 ```shell
-mustang help - Displays help message
+mustang help - Displays all of the help commands that mustang knows about.
+mustang help <query> - Displays all help commands that match <query>.
 gmap <search_term> - Replies with the information from google places/maps.
-quote - Displays random quote
+quote - Replies with a random quote.
+slap - Slaps the user. Format: slap <username> | me
 ```
 
 ### About Mustang
