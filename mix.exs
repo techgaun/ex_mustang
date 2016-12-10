@@ -5,8 +5,12 @@ defmodule ExMustang.Mixfile do
     [app: :ex_mustang,
      version: "0.1.0",
      elixir: "~> 1.3",
+     description: "A simple, clueless bot and collection of responders",
+     source_url: "https://github.com/techgaun/ex_mustang",
+     package: package,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     docs: [extras: ["README.md"]],
      deps: deps()]
   end
 
@@ -14,7 +18,8 @@ defmodule ExMustang.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :hedwig_slack, :quantum, :tentacat, :ex_google, :timex],
+    [applications: [:logger, :hedwig_slack, :quantum, :tentacat, :ex_google, :timex,
+                    :ex_pwned],
      mod: {ExMustang, []}]
   end
 
@@ -33,7 +38,19 @@ defmodule ExMustang.Mixfile do
       {:tentacat, "~> 0.5"},
       {:quantum, "~> 1.8.1"},
       {:timex, "~> 3.1"},
-      {:ex_google, "~> 0.1"}
+      {:ex_google, "~> 0.1"},
+      {:ex_pwned, "~> 0.1"},
+      {:ex_doc, "~> 0.14.5", only: [:dev]}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: [
+        "Samar Acharya"
+      ],
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => "https://github.com/techgaun/ex_mustang"}
     ]
   end
 end

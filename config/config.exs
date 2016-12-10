@@ -27,6 +27,7 @@ config :ex_mustang, ExMustang.Robot,
   responders: [
     {Hedwig.Responders.Help, []},
     {ExMustang.Responders.GMap, []},
+    {ExMustang.Responders.Pwned, []},
     {ExMustang.Responders.Quote, []},
     {ExMustang.Responders.Slap, []},
     {ExMustang.Responders.Time, []}
