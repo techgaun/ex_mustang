@@ -31,7 +31,7 @@ defmodule ExMustang.Responders.Github do
       updated_diff = Timex.diff(current_time, updated_time, :seconds)
       if updated_diff > config[:updated_time_threshold] and created_diff > config[:created_time_threshold] do
         title = pr["title"]
-        text = "PR #{title}(#{link}) is open since a while. You better be watching it!"
+        text = "<!channel> PR #{title}(#{link}) is open since a while. You better be watching it!"
         send_msg(text)
       end
     end
@@ -40,7 +40,7 @@ defmodule ExMustang.Responders.Github do
   def send_msg(text) do
     msg = %Hedwig.Message{
       type: "message",
-      room: "#{config[:slack_channel]}",
+      room: channel_id(config[:slack_channel]),
       text: text
     }
     send(msg)

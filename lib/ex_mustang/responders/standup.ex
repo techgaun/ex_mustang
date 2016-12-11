@@ -11,8 +11,8 @@ defmodule ExMustang.Responders.Standup do
   def run do
     msg = %Hedwig.Message{
       type: "message",
-      room: "#{config[:slack_channel]}",
-      text: "@channel: #{config[:msg]}, #{Hedwig.Responder.random(config[:suffix])}!",
+      room: channel_id(config[:slack_channel]),
+      text: "<!channel> #{config[:msg]}, #{Hedwig.Responder.random(config[:suffix])}!",
     }
     send(msg)
   end
