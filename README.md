@@ -4,7 +4,7 @@
 
 ![Mustang](images/mustang.jpg)
 
-ExMustang is a bot for Slack written in Elixir. While ExMustang is written for Slack, the responder modules should work fine with other Hedwig adapters as well.
+ExMustang is a bot for Slack written in Elixir. While ExMustang is written for Slack, the responder modules should work fine with other Hedwig adapters as well. If you like Mustang, please use [Mustang](images/mustang.jpg) as bot image if possible :)
 
 _Warning: This is a work in progress._
 
@@ -30,6 +30,7 @@ export GOOGLE_API_KEY="<GOOGLE_API_KEY>"
 export STANDUP_CHANNEL="scrum"
 export GH_CHANNEL="github"
 export PWN_CHANNEL="critical"
+export UPTIME_CHANNEL="critical"
 
 mix run --no-halt
 ```
