@@ -4,6 +4,7 @@ defmodule ExMustang.Responders.Pwned do
   """
   use Hedwig.Responder
   alias ExPwned.Breaches
+  import ExMustang.Utils
 
   @usage """
   pwned <search_account> - Checks to see if an account has been breached or not
@@ -14,6 +15,38 @@ defmodule ExMustang.Responders.Pwned do
       |> norm_account
       |> build_msg
     reply msg, response
+  end
+
+  @doc """
+  run/0 is supposed to be run via cron.
+  """
+  def run do
+    pwned = config[:accounts]
+      |> Enum.reduce([], fn account, msgs ->
+        msgs = case Breaches.breachedaccount(account) do
+          {:ok, result, _} when length(result) > 0 ->
+            ["Your account #{account} has been breached.\n\n#{list_result(result)}" | msgs]
+          _ ->
+            msgs
+        end
+        :timer.sleep(1_600)
+        msgs
+      end)
+
+    if length(pwned) > 0 do
+      pwned
+      |> Enum.join("\n\n")
+      |> send_msg
+    end
+  end
+
+  defp send_msg(text) do
+    msg = %Hedwig.Message{
+      type: "message",
+      room: channel_id(config[:slack_channel]),
+      text: text
+    }
+    send(msg)
   end
 
   defp build_msg(account) do
@@ -40,4 +73,6 @@ defmodule ExMustang.Responders.Pwned do
     account
   end
   defp norm_account(account), do: account
+
+  defp config, do: Application.get_env(:ex_mustang, ExMustang.Responders.Pwned)
 end

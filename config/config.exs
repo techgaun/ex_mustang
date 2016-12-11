@@ -6,7 +6,8 @@ config :ex_mustang, ExMustang.Responders.Standup,
   time_of_day: "30 10 * * 1-5",
   slack_channel: System.get_env("STANDUP_CHANNEL") || "general",
   suffix: ["folks", "hackers", "peeps", "avengers"],
-  msg: "Standup time"
+  msg: "Standup time",
+  enabled: true
 
 config :ex_mustang, ExMustang.Responders.Github,
   repos: ["techgaun/ex_mustang"],
@@ -14,10 +15,20 @@ config :ex_mustang, ExMustang.Responders.Github,
   schedule: "0 */1 * * *",
   slack_channel: System.get_env("GH_CHANNEL") || "general",
   created_time_threshold: 10800, # no old than 3 hours
-  updated_time_threshold: 3600 # no old than 1 hour
+  updated_time_threshold: 3600, # no old than 1 hour
+  enabled: true
 
 config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt"
+
+config :ex_mustang, ExMustang.Responders.Pwned,
+  schedule: "0 * */1 * *",
+  enabled: true,
+  accounts: [
+    "abc@example.com",
+    "def@example.com"
+  ],
+  slack_channel: System.get_env("PWN_CHANNEL") || "general"
 
 config :ex_mustang, ExMustang.Robot,
   adapter: Hedwig.Adapters.Slack,

@@ -20,14 +20,28 @@ defmodule ExMustang do
   end
 
   def add_jobs do
-    Quantum.add_job(:standup, %Quantum.Job{
-      schedule: Application.get_env(:ex_mustang, ExMustang.Responders.Standup)[:time_of_day],
-      task: fn -> ExMustang.Responders.Standup.run end
-    })
+    standup_config = Application.get_env(:ex_mustang, ExMustang.Responders.Standup)
+    if standup_config[:enabled] do
+      Quantum.add_job(:standup, %Quantum.Job{
+        schedule: standup_config[:time_of_day],
+        task: fn -> ExMustang.Responders.Standup.run end
+      })
+    end
 
-    Quantum.add_job(:github_pr, %Quantum.Job{
-      schedule: Application.get_env(:ex_mustang, ExMustang.Responders.Github)[:schedule],
-      task: fn -> ExMustang.Responders.Github.run end
-    })
+    gh_config = Application.get_env(:ex_mustang, ExMustang.Responders.Github)
+    if gh_config[:enabled] do
+      Quantum.add_job(:github_pr, %Quantum.Job{
+        schedule: gh_config[:schedule],
+        task: fn -> ExMustang.Responders.Github.run end
+      })
+    end
+
+    pwned_config = Application.get_env(:ex_mustang, ExMustang.Responders.Pwned)
+    if pwned_config[:enabled] do
+      Quantum.add_job(:pwned_check, %Quantum.Job{
+        schedule: pwned_config[:schedule],
+        task: fn -> ExMustang.Responders.Pwned.run end
+      })
+    end
   end
 end

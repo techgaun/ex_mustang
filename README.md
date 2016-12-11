@@ -29,6 +29,9 @@ export GITHUB_TOKEN="<GITHUB_TOKEN>"
 export GOOGLE_API_KEY="<GOOGLE_API_KEY>"
 export STANDUP_CHANNEL="scrum"
 export GH_CHANNEL="github"
+export PWN_CHANNEL="critical"
+
+mix run --no-halt
 ```
 
 ### Scheduled Notifications
@@ -40,6 +43,23 @@ You can configure github token by setting `GITHUB_TOKEN`. Also, you can pass lis
 #### Standup Reminder
 
 The standup reminder reminds us when its standup time. Our nature is that we either forget track of time or are too lazy to remember about it. This does not make you better at attending standup but is more of a satire for us. You can configure message and other bunch of stuffs on [config](config/config.exs#L5-L9)
+
+#### Have I Been Pwned Checker
+
+The hibp checker can check list of accounts against [haveibeenpwned.com](https://haveibeenpwned.com)
+by using [ExPwned](https://github.com/techgaun/ex_pwned). You can set the appropriate configuration on config.exs.
+
+```elixir
+# config below runs hibp check once a day and posts if any found breach to configured slack channel
+config :ex_mustang, ExMustang.Responders.Pwned,
+  schedule: "0 * */1 * *",
+  enabled: true,
+  accounts: [
+    "abc@example.com",
+    "def@example.com"
+  ],
+  slack_channel: System.get_env("PWN_CHANNEL") || "general"
+```
 
 ### Responders
 
