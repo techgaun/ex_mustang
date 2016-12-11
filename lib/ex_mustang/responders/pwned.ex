@@ -17,7 +17,7 @@ defmodule ExMustang.Responders.Pwned do
   end
 
   defp build_msg(account) do
-    case Breaches.breachedaccount(account) |> IO.inspect do
+    case Breaches.breachedaccount(account) do
       {:ok, result, _} when length(result) > 0 ->
         "Oh no! Your account has been breached.\n\n#{list_result(result)}"
       {:ok, %{msg: "no breach was found for given input"}, _} ->
