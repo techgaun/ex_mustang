@@ -61,6 +61,35 @@ config :ex_mustang, ExMustang.Responders.Pwned,
   slack_channel: System.get_env("PWN_CHANNEL") || "general"
 ```
 
+#### Uptime Monitoring
+
+ExMustang supports simple uptime monitoring and can perform periodic uptime checks against given set of endpoints.
+The config block looks like below:
+
+```elixir
+config :ex_mustang, ExMustang.Responders.Uptime,
+  schedule: "*/5 * * *",
+  enabled: true,
+  endpoints: [
+    [
+      uri: "https://api.brighterlink.io/status", status_code: 200, content: ~s("msg":"ok"), method: "GET",
+      content_type: "application/json", req_headers: [{"User-Agent", "ExMustang"}], timeout: 20_000
+    ]
+  ],
+  slack_channel: System.get_env("UPTIME_CHANNEL") || "general"
+```
+
+The `endpoints` section is where you define the endpoints you're willing to perform uptime check against.
+
+- `uri` - the endpoint to hit
+- `status_code` - expected status code
+- `content` - expected response body content (supports both string and regular expression)
+- `method` - one of `GET`, `POST`, `PUT`, `PATCH` and `DELETE`
+- `body` - body to send as part of `POST`, `PUT` or `PATCH` requests
+- `content_type` - expected content type header value
+- `req_headers` - list of tuples of request headers to send
+- `timeout` - maximum timeout before request fails
+
 ### Responders
 
 Currently, there are following responders and these should ideally work with any Hedwig adapters:

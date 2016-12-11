@@ -22,13 +22,24 @@ config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt"
 
 config :ex_mustang, ExMustang.Responders.Pwned,
-  schedule: "0 * */1 * *",
+  schedule: "59 23 */1 * *",
   enabled: true,
   accounts: [
     "abc@example.com",
     "def@example.com"
   ],
   slack_channel: System.get_env("PWN_CHANNEL") || "general"
+
+config :ex_mustang, ExMustang.Responders.Uptime,
+  schedule: "*/5 * * *",
+  enabled: true,
+  endpoints: [
+    [
+      uri: "https://api.brighterlink.io/status", status_code: 200, content: ~s("msg":"ok"), method: "GET",
+      content_type: "application/json", req_headers: [{"User-Agent", "ExMustang"}], timeout: 20_000
+    ]
+  ],
+  slack_channel: System.get_env("UPTIME_CHANNEL") || "general"
 
 config :ex_mustang, ExMustang.Robot,
   adapter: Hedwig.Adapters.Slack,
