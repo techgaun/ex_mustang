@@ -31,7 +31,7 @@ config :ex_mustang, ExMustang.Responders.Pwned,
   slack_channel: System.get_env("PWN_CHANNEL") || "general"
 
 config :ex_mustang, ExMustang.Responders.Uptime,
-  schedule: "*/5 * * *",
+  schedule: "*/5 * * * *",
   enabled: true,
   endpoints: [
     [
