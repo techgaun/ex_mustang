@@ -43,5 +43,13 @@ defmodule ExMustang do
         task: fn -> ExMustang.Responders.Pwned.run end
       })
     end
+
+    uptime_config = Application.get_env(:ex_mustang, ExMustang.Responders.Uptime)
+    if uptime_config[:enabled] do
+      Quantum.add_job(:uptime_check, %Quantum.Job{
+        schedule: uptime_config[:schedule],
+        task: fn -> ExMustang.Responders.Pwned.run end
+      })
+    end
   end
 end
