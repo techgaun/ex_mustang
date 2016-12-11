@@ -3,7 +3,7 @@ defmodule ExMustang.Mixfile do
 
   def project do
     [app: :ex_mustang,
-     version: "0.1.0",
+     version: "0.1.1",
      elixir: "~> 1.3",
      description: "A simple, clueless bot and collection of responders",
      source_url: "https://github.com/techgaun/ex_mustang",
