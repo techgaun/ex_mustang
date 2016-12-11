@@ -10,6 +10,8 @@ _Warning: This is a work in progress._
 
 ![Example](images/example.png)
 
+![Example](images/example2.png)
+
 ### Setup
 
 Create a Slack bot user from [here](https://my.slack.com/services/new/bot). You will receive an API token you can use. Set the `SLACK_API_TOKEN` environment variable and you should be good to go.
