@@ -102,6 +102,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.Quote` - gives you random funny quote
 - `ExMustang.Responders.Slap` - slaps another user
 - `ExMustang.Responders.Time` - gives time on given timezone (without timezone, uses local timezone of machine ExMustang is running on)
+- `ExMustang.Responders.TimeConvert` - converts given unix timestamp to ISO8601 format
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
