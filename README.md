@@ -114,6 +114,7 @@ pwned <search_account> - Checks to see if an account has been breached or not
 quote - Replies with a random quote.
 slap - Slaps the user. Format: slap <username> | me
 time - get time in a given timezone
+unix2iso <unix_timestamp> - Converts given unix timestamp to ISO format (Auto-replies for values that look like timestamps)
 ```
 
 ### About Mustang

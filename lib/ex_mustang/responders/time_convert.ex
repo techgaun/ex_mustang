@@ -6,10 +6,18 @@ defmodule ExMustang.Responders.TimeConvert do
   import ExMustang.Utils
 
   @usage """
-  unix2iso <unix_timestamp> - Converts given unix timestamp to ISO format
+  unix2iso <unix_timestamp> - Converts given unix timestamp to ISO format (Auto-replies for values that look like timestamps)
   """
   hear ~r/^unix2iso\s+(?<ts>[0-9]{1,})$/i, msg do
     reply msg, convert(msg.matches["ts"])
+  end
+
+  hear ~r/(?<ts>[0-9]{10,15})/i, msg do
+    if String.starts_with?(msg.text, "unix2iso") do
+      :ok
+    else
+      reply msg, "Looks like I got a timestamp there: #{convert(msg.matches["ts"])}"
+    end
   end
 
   defp convert(ts) when is_binary(ts) do
