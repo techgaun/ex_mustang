@@ -103,6 +103,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.Slap` - slaps another user
 - `ExMustang.Responders.Time` - gives time on given timezone (without timezone, uses local timezone of machine ExMustang is running on)
 - `ExMustang.Responders.TimeConvert` - converts given unix timestamp to ISO8601 format
+- `ExMustang.Responders.EncodeDecode` - encoding/decoding tools
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
@@ -115,6 +116,8 @@ quote - Replies with a random quote.
 slap - Slaps the user. Format: slap <username> | me
 time - get time in a given timezone
 unix2iso <unix_timestamp> - Converts given unix timestamp to ISO format (Auto-replies for values that look like timestamps)
+b64encode <content> - base64 encoding of given text content
+b64decode <content> - base64 decoding of given text content
 ```
 
 ### About Mustang
