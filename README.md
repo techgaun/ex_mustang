@@ -106,6 +106,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.EncodeDecode` - encoding/decoding tools
 - `ExMustang.Responders.Isup` - checks if a site is up or not via isitup.org API
 - `ExMustang.Responders.RandomInsult` - insults a user with random insults from randominsults.net
+- `ExMustang.Responders.HTTPCat` - gets a cat for corresponding http status code
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
