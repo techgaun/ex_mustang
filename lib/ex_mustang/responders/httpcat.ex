@@ -3,7 +3,6 @@ defmodule ExMustang.Responders.HTTPCat do
   Gets a HTTP Status Code Cat of https://http.cat
   """
   use Hedwig.Responder
-  import ExMustang.Utils, only: [useragent: 0]
 
   @base_url "https://http.cat"
   @known_codes [100, 101, 200, 201, 202, 204, 206, 207, 300, 301, 302, 303, 304,
