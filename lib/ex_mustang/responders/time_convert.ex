@@ -3,7 +3,6 @@ defmodule ExMustang.Responders.TimeConvert do
   Time conversion related stuff.
   """
   use Hedwig.Responder
-  import ExMustang.Utils
 
   @usage """
   unix2iso <unix_timestamp> - Converts given unix timestamp to ISO format (Auto-replies for values that look like timestamps)

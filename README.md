@@ -104,6 +104,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.Time` - gives time on given timezone (without timezone, uses local timezone of machine ExMustang is running on)
 - `ExMustang.Responders.TimeConvert` - converts given unix timestamp to ISO8601 format
 - `ExMustang.Responders.EncodeDecode` - encoding/decoding tools
+- `ExMustang.Responders.Isup` - checks if a site is up or not via isitup.org API
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 

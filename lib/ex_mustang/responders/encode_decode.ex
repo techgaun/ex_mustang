@@ -3,7 +3,6 @@ defmodule ExMustang.Responders.EncodeDecode do
   Encode/Decode module that can perform generic encoding/decoding
   """
   use Hedwig.Responder
-  import ExMustang.Utils
 
   @usage """
   b64encode <content> - base64 encoding of given text content
