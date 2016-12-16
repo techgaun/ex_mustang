@@ -3,7 +3,6 @@ defmodule ExMustang.Responders.Howdoi do
   Implements [howdoi](https://github.com/gleitz/howdoi) like functionality
   """
   use Hedwig.Responder
-  import ExMustang.Utils, only: [useragent: 0]
 
   @google_base_url "https://www.google.com/search?q=site:stackoverflow.com%20"
   @ua [
