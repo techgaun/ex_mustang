@@ -3,6 +3,7 @@ defmodule ExMustang.Responders.Isup do
   checks against https://isitup.org/<domain>.json if the given site is down or not
   """
   use Hedwig.Responder
+  import ExMustang.Utils, only: [useragent: 0]
 
   @usage """
   isitup <domain> - checks if given domain is up or not
@@ -14,7 +15,7 @@ defmodule ExMustang.Responders.Isup do
 
   def isitup(domain) do
     domain = parse_domain(domain)
-    case HTTPoison.get("https://isitup.org/#{domain}.json") do
+    case HTTPoison.get("https://isitup.org/#{domain}.json", [useragent]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body = Poison.decode!(body)
         case body["status_code"] do

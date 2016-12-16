@@ -36,5 +36,7 @@ defmodule ExMustang.Utils do
     id
   end
 
+  def useragent, do: {"User-Agent", "ExMustang"}
+
   defp pid, do: :global.whereis_name("mustang")
 end

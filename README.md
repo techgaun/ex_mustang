@@ -105,6 +105,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.TimeConvert` - converts given unix timestamp to ISO8601 format
 - `ExMustang.Responders.EncodeDecode` - encoding/decoding tools
 - `ExMustang.Responders.Isup` - checks if a site is up or not via isitup.org API
+- `ExMustang.Responders.RandomInsult` - insults a user with random insults from randominsults.net
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
@@ -119,6 +120,8 @@ time - get time in a given timezone
 unix2iso <unix_timestamp> - Converts given unix timestamp to ISO format (Auto-replies for values that look like timestamps)
 b64encode <content> - base64 encoding of given text content
 b64decode <content> - base64 decoding of given text content
+isitup <domain> - checks if given domain is up or not
+insult me|<username> - insults given username with random insults
 ```
 
 ### About Mustang

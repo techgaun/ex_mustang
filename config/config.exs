@@ -55,7 +55,8 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.Time, []},
     {ExMustang.Responders.TimeConvert, []},
     {ExMustang.Responders.EncodeDecode, []},
-    {ExMustang.Responders.Isup, []}
+    {ExMustang.Responders.Isup, []},
+    {ExMustang.Responders.RandomInsult, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
