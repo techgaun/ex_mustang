@@ -107,6 +107,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.Isup` - checks if a site is up or not via isitup.org API
 - `ExMustang.Responders.RandomInsult` - insults a user with random insults from randominsults.net
 - `ExMustang.Responders.HTTPCat` - gets a cat for corresponding http status code
+- `ExMustang.Responders.Howdoi` - tries to find answer for programming questions
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
@@ -123,6 +124,8 @@ b64encode <content> - base64 encoding of given text content
 b64decode <content> - base64 decoding of given text content
 isitup <domain> - checks if given domain is up or not
 insult me|<username> - insults given username with random insults
+httpcat <status_code> - get http status code cat for given value
+howdoi <query> - tries to find solution on the given query
 ```
 
 ### About Mustang
