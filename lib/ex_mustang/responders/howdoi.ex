@@ -73,7 +73,7 @@ defmodule ExMustang.Responders.Howdoi do
 
     case code do
       [code | _] ->
-        "```\n#{Floki.text(code)}\n```"
+        "```\n#{Floki.text(code)}```"
       [] ->
         "```\n#{Floki.text(post_block)}\n```"
       _ ->
