@@ -11,7 +11,7 @@ defmodule ExMustang.Responders.RandomInsult do
   insult me|<username> - insults given username with random insults
   """
 
-  hear ~r/^insult\s*me/i, msg do
+  hear ~r/^insult\s*me$/i, msg do
     emote msg, insult(msg.user.id)
   end
 
