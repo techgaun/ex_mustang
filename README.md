@@ -132,6 +132,10 @@ commitmsg - get a random commit message
 clifu [search_word] - get clifu gem (gives random clifu if no keyword is passed)
 ```
 
+### Changelog
+
+The detail changelog is available [HERE](CHANGELOG.md)
+
 ### About Mustang
 
 Mustang (pronounced like `moostang` not like the `Ford Mustang`; I don't know phonetics) is my best friend whom I had to leave back in Nepal. After surviving [April 2015 Earthquake](https://en.wikipedia.org/wiki/April_2015_Nepal_earthquake), we lived together for a while and I had to leave him back in Nepal. Below is the pic post-earthquake.
