@@ -108,6 +108,8 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.RandomInsult` - insults a user with random insults from randominsults.net
 - `ExMustang.Responders.HTTPCat` - gets a cat for corresponding http status code
 - `ExMustang.Responders.Howdoi` - tries to find answer for programming questions
+- `ExMustang.Responders.CommitMsg` - Get random commit messages from http://whatthecommit.com/index.txt
+- `ExMustang.Responders.CLIFu` - Gets clifu gems from http://www.commandlinefu.com
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
@@ -126,6 +128,8 @@ isitup <domain> - checks if given domain is up or not
 insult me|<username> - insults given username with random insults
 httpcat <status_code> - get http status code cat for given value
 howdoi <query> - tries to find solution on the given query
+commitmsg - get a random commit message
+clifu [search_word] - get clifu gem (gives random clifu if no keyword is passed)
 ```
 
 ### About Mustang
