@@ -36,7 +36,20 @@ defmodule ExMustang.Utils do
     id
   end
 
+  @doc false
   def useragent, do: {"User-Agent", "ExMustang"}
+
+  @doc """
+  Parses given domain based on how it comes. If it comes from slack, it is handled properly
+  """
+  def parse_domain(domain) do
+    if String.contains?(domain, "<http") do
+      [_ | [domain]] = String.split(domain, "|")
+      String.trim_trailing(domain, ">")
+    else
+      domain
+    end
+  end
 
   defp pid, do: :global.whereis_name("mustang")
 end

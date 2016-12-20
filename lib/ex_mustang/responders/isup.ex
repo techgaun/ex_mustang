@@ -3,7 +3,7 @@ defmodule ExMustang.Responders.Isup do
   checks against https://isitup.org/<domain>.json if the given site is down or not
   """
   use Hedwig.Responder
-  import ExMustang.Utils, only: [useragent: 0]
+  import ExMustang.Utils, only: [useragent: 0, parse_domain: 1]
 
   @usage """
   isitup <domain> - checks if given domain is up or not
@@ -26,15 +26,6 @@ defmodule ExMustang.Responders.Isup do
         end
       _ ->
         "Could not check if #{domain} is up or not. Please try later"
-    end
-  end
-
-  defp parse_domain(domain) do
-    if String.contains?(domain, "<http") do
-      [_ | [domain]] = String.split(domain, "|")
-      String.trim_trailing(domain, ">")
-    else
-      domain
     end
   end
 end
