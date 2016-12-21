@@ -30,10 +30,14 @@ defmodule ExMustang.Responders.Whois do
   end
 
   defp parse_record([], domain), do: "I did not find whois data for #{domain}."
-  defp parse_record(record, _) do
+  defp parse_record(record, domain) do
     data = record
       |> Floki.text
       |> String.trim
-    "```\n#{data}```"
+    if String.length(data) === 0 do
+      "I could not find whois data for #{domain}"
+    else
+      "```\n#{data}```"
+    end
   end
 end
