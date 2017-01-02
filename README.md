@@ -113,6 +113,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.CommitMsg` - Get random commit messages from http://whatthecommit.com/index.txt
 - `ExMustang.Responders.CLIFu` - Gets clifu gems from http://www.commandlinefu.com
 - `ExMustang.Responders.Whois` - performs a whois query using https://dnsquery.org
+- `ExMustang.Responders.GitTip` - get a random git tip (with support for keywords)
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
