@@ -11,7 +11,7 @@ defmodule ExMustang.Responders.TimeConvert do
     reply msg, convert(msg.matches["ts"])
   end
 
-  hear ~r/(?<ts>[0-9]{10,15})/i, msg do
+  hear ~r/(?<ts>\b[0-9]{10,15}\b)/i, msg do
     if String.starts_with?(msg.text, "unix2iso") do
       :ok
     else
