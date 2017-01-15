@@ -7,8 +7,8 @@ defmodule ExMustang.Responders.Github do
   import ExMustang.Utils
 
   def run do
-    gh_client = Tentacat.Client.new(%{access_token: config[:access_token]})
-    config[:repos]
+    gh_client = Tentacat.Client.new(%{access_token: config()[:access_token]})
+    config()[:repos]
     |> Enum.each(fn x ->
       [usr, repo] = String.split(x, "/")
       Tentacat.Pulls.list(usr, repo, gh_client)
@@ -29,7 +29,7 @@ defmodule ExMustang.Responders.Github do
       current_time = Timex.now
       created_diff = Timex.diff(current_time, created_time, :seconds)
       updated_diff = Timex.diff(current_time, updated_time, :seconds)
-      if updated_diff > config[:updated_time_threshold] and created_diff > config[:created_time_threshold] do
+      if updated_diff > config()[:updated_time_threshold] and created_diff > config()[:created_time_threshold] do
         title = pr["title"]
         text = "<!channel> PR #{title}(#{link}) is open since a while. You better be watching it!"
         send_msg(text)
@@ -40,7 +40,7 @@ defmodule ExMustang.Responders.Github do
   def send_msg(text) do
     msg = %Hedwig.Message{
       type: "message",
-      room: channel_id(config[:slack_channel]),
+      room: channel_id(config()[:slack_channel]),
       text: text
     }
     send(msg)

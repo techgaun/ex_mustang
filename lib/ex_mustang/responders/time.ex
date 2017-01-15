@@ -10,7 +10,7 @@ defmodule ExMustang.Responders.Time do
   time - get time in a given timezone
   """
   hear ~r/^time$/i, msg do
-    reply msg, build_msg
+    reply msg, build_msg()
   end
 
   hear ~r/^time\s+(?<tz>.*)$/i, msg do

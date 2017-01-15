@@ -19,7 +19,7 @@ defmodule ExMustang.Responders.Whois do
       |> parse_domain
       |> String.replace(~r|https?://|, "")
 
-    case HTTPoison.get("#{@base_url}/#{domain}", [useragent], follow_redirect: true) do
+    case HTTPoison.get("#{@base_url}/#{domain}", [useragent()], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
         |> Floki.find("pre")

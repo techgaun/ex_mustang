@@ -11,7 +11,7 @@ defmodule ExMustang.Responders.Quote do
   quote - Replies with a random quote.
   """
   hear ~r/^quote(!)?$/i, msg do
-    reply msg, random(quotes)
+    reply msg, random(quotes())
   end
 
   defp quotes, do: @quotes_file |> File.read! |> String.split("\n")

@@ -8,14 +8,14 @@ defmodule ExMustang.Utils do
   """
   @spec send(%Hedwig.Message{}) :: :ok
   def send(msg) do
-    Hedwig.Robot.send(pid, msg)
+    Hedwig.Robot.send(pid(), msg)
   end
 
   @doc """
   Gets the list of channels for Slack from Hedwig.Adapters.Slack process state
   """
   def channels do
-    %Hedwig.Robot{adapter: apid} = :sys.get_state(pid)
+    %Hedwig.Robot{adapter: apid} = pid() |> :sys.get_state()
     slack_state = apid
     |> :sys.get_state
     |> Map.from_struct
@@ -30,7 +30,8 @@ defmodule ExMustang.Utils do
   """
   @spec channel_id(String.t) :: String.t | nil
   def channel_id(name) do
-    {id, _} = channels
+    {id, _} =
+      channels()
       |> Stream.map(fn {_x, %{"id" => id, "name" => name}} -> {id, name} end)
       |> Enum.find({nil, nil}, fn {_, channel} -> channel === name end)
     id

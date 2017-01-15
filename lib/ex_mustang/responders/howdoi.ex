@@ -32,7 +32,7 @@ defmodule ExMustang.Responders.Howdoi do
 
   defp parse_gsearch(body) do
     if String.contains?(body, "did not match any documents.") do
-      no_result
+      no_result()
     else
       [so_url | _] = body
         |> Floki.find(".r a")
@@ -63,7 +63,7 @@ defmodule ExMustang.Responders.Howdoi do
 
         answer |> get_data_to_send
       _ ->
-        no_result
+        no_result()
     end
   end
 
@@ -77,7 +77,7 @@ defmodule ExMustang.Responders.Howdoi do
       [] ->
         "```\n#{Floki.text(post_block)}\n```"
       _ ->
-        no_result
+        no_result()
     end
   end
 

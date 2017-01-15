@@ -15,7 +15,7 @@ defmodule ExMustang.Responders.Isup do
 
   def isitup(domain) do
     domain = parse_domain(domain)
-    case HTTPoison.get("https://isitup.org/#{domain}.json", [useragent]) do
+    case HTTPoison.get("https://isitup.org/#{domain}.json", [useragent()]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body = Poison.decode!(body)
         case body["status_code"] do

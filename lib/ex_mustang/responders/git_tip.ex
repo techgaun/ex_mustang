@@ -14,7 +14,7 @@ defmodule ExMustang.Responders.GitTip do
   gittip [keyword] - Get a random git tip for given keyword
   """
   hear ~r/^gittip$/i, msg do
-    reply msg, get_random(read_json)
+    reply msg, (read_json() |> get_random())
   end
   hear ~r/^gittip\s+(?<keyword>.*)$/i, msg do
     reply msg, get_tip(msg.matches["keyword"])
@@ -29,7 +29,7 @@ defmodule ExMustang.Responders.GitTip do
 
   def get_tip(keyword) do
     keyword_lower = String.downcase(keyword)
-    read_json
+    read_json()
     |> Enum.filter(fn x ->
       haystack = String.downcase(x["title"])
       String.contains?(haystack, keyword_lower)
@@ -55,7 +55,7 @@ defmodule ExMustang.Responders.GitTip do
   end
 
   def read_json do
-    unless recent_json?, do: download_json
+    unless recent_json?(), do: download_json()
 
     @tmpfile
     |> File.read!()
@@ -72,7 +72,7 @@ defmodule ExMustang.Responders.GitTip do
   end
 
   def download_json do
-    %HTTPoison.Response{body: json} = HTTPoison.get!(@tip_json, [useragent], follow_redirect: true)
+    %HTTPoison.Response{body: json} = HTTPoison.get!(@tip_json, [useragent()], follow_redirect: true)
     File.write!(@tmpfile, json)
   end
 end

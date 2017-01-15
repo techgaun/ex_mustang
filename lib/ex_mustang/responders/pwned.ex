@@ -21,7 +21,7 @@ defmodule ExMustang.Responders.Pwned do
   run/0 is supposed to be run via cron.
   """
   def run do
-    pwned = config[:accounts]
+    pwned = config()[:accounts]
       |> Enum.reduce([], fn account, msgs ->
         msgs = case Breaches.breachedaccount(account) do
           {:ok, result, _} when length(result) > 0 ->
@@ -43,7 +43,7 @@ defmodule ExMustang.Responders.Pwned do
   defp send_msg(text) do
     msg = %Hedwig.Message{
       type: "message",
-      room: channel_id(config[:slack_channel]),
+      room: channel_id(config()[:slack_channel]),
       text: text
     }
     send(msg)

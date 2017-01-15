@@ -28,7 +28,7 @@ defmodule ExMustang.Responders.CLIFu do
   end
 
   defp fetch_clifu(url) do
-    case HTTPoison.get(url, [useragent], follow_redirect: true) do
+    case HTTPoison.get(url, [useragent()], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
         |> Poison.decode!

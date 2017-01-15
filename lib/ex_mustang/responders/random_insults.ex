@@ -20,7 +20,7 @@ defmodule ExMustang.Responders.RandomInsult do
   end
 
   defp insult(user) do
-    case HTTPoison.get(@base_url, [useragent]) do
+    case HTTPoison.get(@base_url, [useragent()]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         parse_body(body, user)
       _ ->

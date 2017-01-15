@@ -6,7 +6,7 @@ defmodule ExMustang.Responders.Uptime do
   import ExMustang.Utils
 
   def run do
-    result = config[:endpoints]
+    result = config()[:endpoints]
       |> Stream.map(&(endpoint_check(&1)))
       |> Stream.filter(&(length(&1) > 0))
       |> Enum.map(&(Enum.join(&1, "\n")))
@@ -59,7 +59,7 @@ defmodule ExMustang.Responders.Uptime do
   defp send_msg(text) do
     msg = %Hedwig.Message{
       type: "message",
-      room: channel_id(config[:slack_channel]),
+      room: channel_id(config()[:slack_channel]),
       text: text
     }
     send(msg)
