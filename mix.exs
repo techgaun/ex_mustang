@@ -38,7 +38,7 @@ defmodule ExMustang.Mixfile do
       {:tentacat, "~> 0.5"},
       {:quantum, "~> 1.8.1"},
       {:timex, "~> 3.1"},
-      {:ex_google, "~> 0.1"},
+      {:ex_google, "~> 0.1.3"},
       {:ex_pwned, "~> 0.1"},
       {:floki, "~> 0.11.0"},
       {:ex_doc, "~> 0.14.5", only: [:dev]}
