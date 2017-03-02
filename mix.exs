@@ -35,7 +35,7 @@ defmodule ExMustang.Mixfile do
   defp deps do
     [
       {:hedwig_slack, "~> 1.0"},
-      {:tentacat, "~> 0.5"},
+      {:tentacat, github: "techgaun/tentacat"},
       {:quantum, "~> 1.8.1"},
       {:timex, "~> 3.1"},
       {:ex_google, "~> 0.1"},

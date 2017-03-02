@@ -138,6 +138,26 @@ clifu [search_word] - get clifu gem (gives random clifu if no keyword is passed)
 whois <domain> - gives whois query for given domain
 gittip [keyword] - Get a random git tip for given keyword
 happy birthday <me|@user> - Send happy birthday message to the user mentioned
+hdeploy <app-name> - Deploys configured branch to the given app
+```
+
+#### Heroku Deployment
+
+For heroku deployment to work, you need to specify the following configurations:
+
+- `HEROKU_GITHUB_TOKEN` or `GITHUB_TOKEN`
+- `HEROKU_TOKEN` which is an API key you can get from [here](https://dashboard.heroku.com/account)
+- mapping of apps in your config which is a tuple of heroku app name and map of repo and branch
+
+An example config looks like below:
+
+```elixir
+config :ex_mustang, ExMustang.Responders.HerokuDeploy,
+  github_token: System.get_env("HEROKU_GITHUB_TOKEN") || System.get_env("GITHUB_TOKEN"),
+  token: System.get_env("HEROKU_TOKEN"),
+  apps: [
+    {"casa-core-stage", %{repo: "casaiq/core", branch: "master"}}
+  ]
 ```
 
 ### Changelog
