@@ -62,7 +62,8 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.CommitMsg, []},
     {ExMustang.Responders.CLIFu, []},
     {ExMustang.Responders.Whois, []},
-    {ExMustang.Responders.GitTip, []}
+    {ExMustang.Responders.GitTip, []},
+    {ExMustang.Responders.Birthday, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"

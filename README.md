@@ -114,6 +114,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.CLIFu` - Gets clifu gems from http://www.commandlinefu.com
 - `ExMustang.Responders.Whois` - performs a whois query using https://dnsquery.org
 - `ExMustang.Responders.GitTip` - get a random git tip (with support for keywords)
+- `ExMustang.Responders.Birthday` - send a happy birthday to the mentioned user
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
@@ -135,6 +136,8 @@ howdoi <query> - tries to find solution on the given query
 commitmsg - get a random commit message
 clifu [search_word] - get clifu gem (gives random clifu if no keyword is passed)
 whois <domain> - gives whois query for given domain
+gittip [keyword] - Get a random git tip for given keyword
+happy birthday <me|@user> - Send happy birthday message to the user mentioned
 ```
 
 ### Changelog
