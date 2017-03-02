@@ -41,6 +41,13 @@ config :ex_mustang, ExMustang.Responders.Uptime,
   ],
   slack_channel: System.get_env("UPTIME_CHANNEL") || "general"
 
+config :ex_mustang, ExMustang.Responders.HerokuDeploy,
+  github_token: System.get_env("HEROKU_GITHUB_TOKEN") || System.get_env("GITHUB_TOKEN"),
+  token: System.get_env("HEROKU_TOKEN"),
+  apps: [
+    {"casa-core-stage", %{repo: "casaiq/core", branch: "master"}}
+  ]
+
 config :ex_mustang, ExMustang.Robot,
   adapter: Hedwig.Adapters.Slack,
   name: "mustang",
@@ -63,7 +70,8 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.CLIFu, []},
     {ExMustang.Responders.Whois, []},
     {ExMustang.Responders.GitTip, []},
-    {ExMustang.Responders.Birthday, []}
+    {ExMustang.Responders.Birthday, []},
+    {ExMustang.Responders.HerokuDeploy, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
