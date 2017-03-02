@@ -1,5 +1,28 @@
 # Change Log
 
+## [0.3.0](https://github.com/techgaun/ex_mustang/tree/0.3.0) (2017-03-02)
+
+[Full Changelog](https://github.com/techgaun/ex_mustang/compare/0.2.0...0.3.0)
+
+**Closed issues:**
+
+- fix timestamp extra intelligence [\#47](https://github.com/techgaun/ex_mustang/issues/47)
+- git-tips [\#44](https://github.com/techgaun/ex_mustang/issues/44)
+- add domain whois lookup feature [\#41](https://github.com/techgaun/ex_mustang/issues/41)
+- small ideas to implement [\#26](https://github.com/techgaun/ex_mustang/issues/26)
+- encode/decode [\#25](https://github.com/techgaun/ex_mustang/issues/25)
+- Wish happy birthday if its someone's birthday [\#6](https://github.com/techgaun/ex_mustang/issues/6)
+- Analyze slack online status of team members and predict if they are going to make it to standup [\#4](https://github.com/techgaun/ex_mustang/issues/4)
+
+**Merged pull requests:**
+
+- add heroku github deployment [\#53](https://github.com/techgaun/ex_mustang/pull/53) ([techgaun](https://github.com/techgaun))
+- add birthday responder [\#52](https://github.com/techgaun/ex_mustang/pull/52) ([techgaun](https://github.com/techgaun))
+- 1.4 warning fixes [\#48](https://github.com/techgaun/ex_mustang/pull/48) ([techgaun](https://github.com/techgaun))
+- add git tip responder [\#46](https://github.com/techgaun/ex_mustang/pull/46) ([techgaun](https://github.com/techgaun))
+- handle when record data is empty [\#43](https://github.com/techgaun/ex_mustang/pull/43) ([techgaun](https://github.com/techgaun))
+- add whois responder [\#42](https://github.com/techgaun/ex_mustang/pull/42) ([techgaun](https://github.com/techgaun))
+
 ## [0.2.0](https://github.com/techgaun/ex_mustang/tree/0.2.0) (2016-12-17)
 [Full Changelog](https://github.com/techgaun/ex_mustang/compare/0.1.0...0.2.0)
 
