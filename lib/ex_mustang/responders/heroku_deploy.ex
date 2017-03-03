@@ -28,7 +28,7 @@ defmodule ExMustang.Responders.HerokuDeploy do
   @usage """
   hdeploy <app-name> - Deploys configured branch to the given app
   """
-  hear ~r/hdeploy\s+(?<app_name>.*)$/i, msg do
+  hear ~r/^hdeploy\s+(?<app_name>.*)$/i, msg do
     reply msg, deploy(msg.matches["app_name"])
   end
 
