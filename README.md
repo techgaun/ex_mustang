@@ -95,6 +95,12 @@ The `endpoints` section is where you define the endpoints you're willing to perf
 - `req_headers` - list of tuples of request headers to send
 - `timeout` - maximum timeout before request fails
 
+#### Random Quote of the Day
+
+ExMustang can send a quote as specified in schedule. You can configure schedule from config.exs
+and you can specify `QUOTE_CHANNEL` env-var. If `QUOTE_CHANNEL` is not specified, the quotes are
+sent to `general` channel by default.
+
 ### Responders
 
 Currently, there are following responders and these should ideally work with any Hedwig adapters:

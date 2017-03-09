@@ -51,5 +51,13 @@ defmodule ExMustang do
         task: fn -> ExMustang.Responders.Uptime.run end
       })
     end
+
+    quote_config = Application.get_env(:ex_mustang, ExMustang.Responders.Quote)
+    if quote_config[:enabled] do
+      Quantum.add_job(:quote_of_the_day, %Quantum.Job{
+        schedule: quote_config[:schedule],
+        task: fn -> ExMustang.Responders.Quote.run end
+      })
+    end
   end
 end
