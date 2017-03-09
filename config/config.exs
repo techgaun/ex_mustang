@@ -19,7 +19,10 @@ config :ex_mustang, ExMustang.Responders.Github,
   enabled: true
 
 config :ex_mustang, ExMustang.Responders.Quote,
-  quote_src: "files/quotes.txt"
+  quote_src: "files/quotes.txt",
+  schedule: "*/1 * * * 1-5",
+  slack_channel: System.get_env("QUOTE_CHANNEL") || "general",
+  enabled: true
 
 config :ex_mustang, ExMustang.Responders.Pwned,
   schedule: "59 23 */1 * *",
