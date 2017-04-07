@@ -26,5 +26,5 @@
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.1", "28a4d65b7f59893bc2c7de786dec1e1555bd742d336043fe644ae956c3497fbe", [:make, :rebar], []},
   "tentacat": {:git, "https://github.com/techgaun/tentacat.git", "c933dc3376226f2889a405ef397d362dd21effca", []},
   "timex": {:hex, :timex, "3.1.5", "413d6d8d6f0162a5d47080cb8ca520d790184ac43e097c95191c7563bf25b428", [:mix], [{:combine, "~> 0.7", [hex: :combine, optional: false]}, {:gettext, "~> 0.10", [hex: :gettext, optional: false]}, {:tzdata, "~> 0.1.8 or ~> 0.5", [hex: :tzdata, optional: false]}]},
-  "tzdata": {:hex, :tzdata, "0.5.10", "087e8dfe8c0283473115ad8ca6974b898ecb55ca5c725427a142a79593391e90", [:mix], [{:hackney, "~> 1.0", [hex: :hackney, optional: false]}]},
+  "tzdata": {:hex, :tzdata, "0.5.11", "3d5469a9f46bdf4a8760333dbdabdcc4751325035c454b10521f71e7c611ae50", [:mix], [{:hackney, "~> 1.0", [hex: :hackney, optional: false]}]},
   "websocket_client": {:hex, :websocket_client, "1.2.1", "a965ce0be5583c90347400bceca66629e4debd5feb9bd516107e2924bdf39dad", [:rebar3], []}}
