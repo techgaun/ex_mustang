@@ -5,7 +5,7 @@ defmodule ExMustang.Responders.Whois do
   use Hedwig.Responder
   import ExMustang.Utils, only: [useragent: 0, parse_domain: 1]
 
-  @base_url "https://dnsquery.org/whois,request"
+  @base_url "https://dnsquery.org/whois"
 
   @usage """
   whois <domain> - gives whois query for given domain
@@ -18,14 +18,33 @@ defmodule ExMustang.Responders.Whois do
     domain = domain
       |> parse_domain
       |> String.replace(~r|https?://|, "")
+    domain
+    |> get_url_with_token()
+    |> fetch_whois(domain)
+  end
 
-    case HTTPoison.get("#{@base_url}/#{domain}", [useragent()], follow_redirect: true) do
+  defp fetch_whois({:ok, url, {_, cookie}}, domain) do
+    case HTTPoison.get(url, [useragent(), {"Cookie", cookie}], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
         |> Floki.find("pre")
         |> parse_record(domain)
       _ ->
-        "I could not perform whois on #{domain}"
+        error(domain)
+    end
+  end
+  defp fetch_whois(:error, domain), do: error(domain)
+
+  defp get_url_with_token(domain) do
+    case HTTPoison.get("#{@base_url}/#{domain}", [useragent()], follow_redirect: true) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body, headers: headers}} ->
+        re = ~r|(https://dnsquery.org/whois,request/techgaun.com/\w*)|
+        case Regex.run(re, body) do
+          ["https://dnsquery.org/whois,request/" <> _ = h | _t] ->
+            {:ok, h, List.keyfind(headers, "Set-Cookie", 0)}
+          _ -> :error
+        end
+      _ -> :error
     end
   end
 
@@ -40,4 +59,6 @@ defmodule ExMustang.Responders.Whois do
       "```\n#{data}```"
     end
   end
+
+  defp error(domain), do: "I could not perform whois on #{domain}"
 end
