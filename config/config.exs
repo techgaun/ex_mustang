@@ -110,3 +110,8 @@ config :ex_google,
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+cfg_file = "#{Mix.env}.exs"
+if File.exists?("config/#{cfg_file}") do
+  import_config cfg_file
+end

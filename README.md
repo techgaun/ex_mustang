@@ -39,6 +39,9 @@ export UPTIME_CHANNEL="critical"
 mix run --no-halt
 ```
 
+For using `ex_mustang` with multiple slack teams, you can use `MIX_ENV` by creating config files such as `yourteam.exs`
+and run as `MIX_ENV=yourteam mix run --no-halt`
+
 ### Scheduled Notifications
 
 #### Github Pull Requests Watcher
