@@ -17,3 +17,5 @@ erl_crash.dump
 *.ez
 
 runner
+
+config/nphackers.exs
