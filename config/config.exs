@@ -24,6 +24,9 @@ config :ex_mustang, ExMustang.Responders.Quote,
   slack_channel: System.get_env("QUOTE_CHANNEL") || "general",
   enabled: true
 
+config :ex_mustang, ExMustang.Responders.InviteAll,
+  slack_token: System.get_env("SLACK_INVITEALL_TOKEN")
+
 config :ex_mustang, ExMustang.Responders.Pwned,
   schedule: "59 23 */1 * *",
   enabled: true,
@@ -74,7 +77,8 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.Whois, []},
     {ExMustang.Responders.GitTip, []},
     {ExMustang.Responders.Birthday, []},
-    {ExMustang.Responders.HerokuDeploy, []}
+    {ExMustang.Responders.HerokuDeploy, []},
+    {ExMustang.Responders.InviteAll, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"

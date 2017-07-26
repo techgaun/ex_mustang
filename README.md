@@ -35,6 +35,7 @@ export STANDUP_CHANNEL="scrum"
 export GH_CHANNEL="github"
 export PWN_CHANNEL="critical"
 export UPTIME_CHANNEL="critical"
+export SLACK_INVITEALL_TOKEN="<SLACK_INVITEALL_TOKEN>"
 
 mix run --no-halt
 ```
@@ -124,6 +125,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.Whois` - performs a whois query using https://dnsquery.org
 - `ExMustang.Responders.GitTip` - get a random git tip (with support for keywords)
 - `ExMustang.Responders.Birthday` - send a happy birthday to the mentioned user
+- `ExMustang.Responders.InviteAll` - invite all members (of optionally given channel)
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
@@ -148,6 +150,7 @@ whois <domain> - gives whois query for given domain
 gittip [keyword] - Get a random git tip for given keyword
 happy birthday <me|@user> - Send happy birthday message to the user mentioned
 hdeploy <app-name> - Deploys configured branch to the given app
+inviteall [src_channel] - invite all the members of source channel
 ```
 
 #### Heroku Deployment
@@ -168,6 +171,10 @@ config :ex_mustang, ExMustang.Responders.HerokuDeploy,
     {"casa-core-stage", %{repo: "casaiq/core", branch: "master"}}
   ]
 ```
+
+#### InviteAll Responder
+
+The invite all responder requires you to provide a token of a non-bot and non-guest slack team member because thats how the slack api works. You can get your personal tokens from [HERE](https://api.slack.com/custom-integrations/legacy-tokens)
 
 ### Changelog
 
