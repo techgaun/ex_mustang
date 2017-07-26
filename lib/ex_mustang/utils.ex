@@ -15,11 +15,7 @@ defmodule ExMustang.Utils do
   Gets the list of channels for Slack from Hedwig.Adapters.Slack process state
   """
   def channels do
-    %Hedwig.Robot{adapter: apid} = pid() |> :sys.get_state()
-    slack_state = apid
-    |> :sys.get_state
-    |> Map.from_struct
-
+    slack_state = get_slack_state()
     slack_state
     |> Map.get(:channels, %{})
     |> Map.merge(Map.get(slack_state, :groups, %{}))
@@ -35,6 +31,43 @@ defmodule ExMustang.Utils do
       |> Stream.map(fn {_x, %{"id" => id, "name" => name}} -> {id, name} end)
       |> Enum.find({nil, nil}, fn {_, channel} -> channel === name end)
     id
+  end
+
+  @doc """
+  Gets all the members in the slack team
+  """
+  @spec members() :: list
+  def members do
+    get_slack_state()
+    |> Map.get(:users)
+    |> Enum.reduce([], fn {_, member}, acc ->
+      [member | acc]
+    end) 
+  end
+
+  @doc """
+  Gets all the members in a given channel
+  """
+  @spec members(String.t | nil) :: list
+  def members(nil), do: members()
+  def members(channel) do
+    cid = channel_id(channel)
+
+    channel = get_slack_state()
+              |> Map.get(:channels)
+              |> Map.get(cid)
+
+    members()
+    |> Enum.filter(fn member ->
+      member["id"] in channel["members"]
+    end)
+  end
+
+  def get_slack_state do
+    %Hedwig.Robot{adapter: apid} = pid() |> :sys.get_state()
+    apid
+    |> :sys.get_state
+    |> Map.from_struct
   end
 
   @doc false
