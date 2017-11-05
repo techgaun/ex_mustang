@@ -19,3 +19,4 @@ erl_crash.dump
 runner
 
 config/nphackers.exs
+config-bak.exs
