@@ -38,7 +38,7 @@ defmodule ExMustang.Responders.Whois do
   defp get_url_with_token(domain) do
     case HTTPoison.get("#{@base_url}/#{domain}", [useragent()], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body, headers: headers}} ->
-        re = ~r|(https://dnsquery.org/whois,request/techgaun.com/\w*)|
+        re = ~r|(https://dnsquery.org/whois,request/#{domain}/\w*)|
         case Regex.run(re, body) do
           ["https://dnsquery.org/whois,request/" <> _ = h | _t] ->
             {:ok, h, List.keyfind(headers, "Set-Cookie", 0)}
