@@ -12,7 +12,6 @@ defmodule ExMustang.Responders.GMap do
     %Hedwig.Message{matches: %{1 => search_term}} = msg
     result = case Places.search(%{query: search_term}, :text) do
       {:ok, [%{"formatted_address" => _} = h | _]} ->
-        IO.inspect h
         build_msg(h)
       _ ->
         "I could not find that place on google maps"
