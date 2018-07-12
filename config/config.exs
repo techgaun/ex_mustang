@@ -14,8 +14,10 @@ config :ex_mustang, ExMustang.Responders.Github,
   access_token: System.get_env("GITHUB_TOKEN"),
   schedule: "0 8-21/3 * * 1-5",
   slack_channel: System.get_env("GH_CHANNEL") || "general",
-  created_time_threshold: 10800, # no old than 3 hours
-  updated_time_threshold: 3600, # no old than 1 hour
+  # no old than 3 hours
+  created_time_threshold: 10800,
+  # no old than 1 hour
+  updated_time_threshold: 3600,
   enabled: true
 
 config :ex_mustang, ExMustang.Responders.Quote,
@@ -41,8 +43,13 @@ config :ex_mustang, ExMustang.Responders.Uptime,
   enabled: true,
   endpoints: [
     [
-      uri: "https://api.brighterlink.io/status", status_code: 200, content: ~s("msg":"ok"), method: "GET",
-      content_type: "application/json", req_headers: [{"User-Agent", "ExMustang"}], timeout: 20_000
+      uri: "https://api.brighterlink.io/status",
+      status_code: 200,
+      content: ~s("msg":"ok"),
+      method: "GET",
+      content_type: "application/json",
+      req_headers: [{"User-Agent", "ExMustang"}],
+      timeout: 20_000
     ]
   ],
   slack_channel: System.get_env("UPTIME_CHANNEL") || "general"
@@ -87,7 +94,6 @@ config :ex_google,
   api_key: System.get_env("GOOGLE_API_KEY"),
   output: "json"
 
-
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
@@ -115,7 +121,8 @@ config :ex_google,
 #
 #     import_config "#{Mix.env}.exs"
 
-cfg_file = "#{Mix.env}.exs"
+cfg_file = "#{Mix.env()}.exs"
+
 if File.exists?("config/#{cfg_file}") do
   import_config cfg_file
 end

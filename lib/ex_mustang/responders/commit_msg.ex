@@ -11,12 +11,14 @@ defmodule ExMustang.Responders.CommitMsg do
   commitmsg - get a random commit message
   """
   hear ~r/^commitmsg$/i, msg do
-    reply msg, get_commit_msg()
+    reply(msg, get_commit_msg())
   end
+
   defp get_commit_msg do
     case HTTPoison.get(@url, [useragent()]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
+
       _ ->
         "I encountered problem getting commit message."
     end

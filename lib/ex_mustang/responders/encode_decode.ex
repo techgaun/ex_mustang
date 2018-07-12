@@ -8,14 +8,14 @@ defmodule ExMustang.Responders.EncodeDecode do
   b64encode <content> - base64 encoding of given text content
   """
   hear ~r/^b64encode\s+(?<content>.*)$/i, msg do
-    reply msg, Base.encode64(msg.matches["content"])
+    reply(msg, Base.encode64(msg.matches["content"]))
   end
 
   @usage """
   b64decode <content> - base64 decoding of given text content
   """
   hear ~r/^b64decode\s+(?<content>.*)$/i, msg do
-    reply msg, b64_decode(msg.matches["content"])
+    reply(msg, b64_decode(msg.matches["content"]))
   end
 
   # not sure if uri(en|de)code is actually useful.

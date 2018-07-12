@@ -17,14 +17,16 @@ defmodule ExMustang.Responders.Howdoi do
   """
 
   hear ~r/^howdoi\s+(?<query>.*)$/i, msg do
-    reply msg, gsearch(msg.matches["query"])
+    reply(msg, gsearch(msg.matches["query"]))
   end
 
   defp gsearch(query) do
     [ua] = Enum.take_random(@ua, 1)
+
     case HTTPoison.get("#{@google_base_url}#{URI.encode(query)}", [{"User-Agent", ua}]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         parse_gsearch(body)
+
       _ ->
         "I encountered an error while trying to fetch result for that query"
     end
@@ -34,7 +36,8 @@ defmodule ExMustang.Responders.Howdoi do
     if String.contains?(body, "did not match any documents.") do
       no_result()
     else
-      [so_url | _] = body
+      [so_url | _] =
+        body
         |> Floki.find(".r a")
 
       so_url
@@ -46,9 +49,11 @@ defmodule ExMustang.Responders.Howdoi do
 
   defp so_extract(so_url) do
     [ua] = Enum.take_random(@ua, 1)
+
     case HTTPoison.get(so_url, [{"User-Agent", ua}]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         extract_code(body)
+
       _ ->
         "I encountered an error while trying to fetch result for that query"
     end
@@ -56,18 +61,21 @@ defmodule ExMustang.Responders.Howdoi do
 
   defp extract_code(body) do
     answers = Floki.find(body, "div#answers div.answer")
+
     case answers do
       [first | _] ->
-        [answer | _] = first
+        [answer | _] =
+          first
           |> Floki.find("div.post-text")
 
-         author =
+        author =
           first
           |> Floki.find(".user-info .user-details")
 
-          upvotes = first
-                    |> Floki.find("div.vote span.vote-count-post")
-                    |> Floki.text()
+        upvotes =
+          first
+          |> Floki.find("div.vote span.vote-count-post")
+          |> Floki.text()
 
         get_data_to_send(answer, author, upvotes)
 
@@ -77,26 +85,32 @@ defmodule ExMustang.Responders.Howdoi do
   end
 
   defp get_data_to_send(post_block, author_block, upvotes) do
-    code = post_block
+    code =
+      post_block
       |> Floki.find("pre code")
 
     case code do
       [code | _] ->
         "#{build_author_text(author_block, upvotes)}\n```\n#{Floki.text(code)}```"
+
       [] ->
         "#{build_author_text(author_block, upvotes)}\n```\n#{Floki.text(post_block)}\n```"
+
       _ ->
         no_result()
     end
   end
 
   defp build_author_text(author_block, upvotes) do
-    author_name = author_block 
-                  |> Floki.find("a")
-                  |> Floki.text()
-    rep = author_block
-          |> Floki.find("span.reputation-score")
-          |> Floki.text()
+    author_name =
+      author_block
+      |> Floki.find("a")
+      |> Floki.text()
+
+    rep =
+      author_block
+      |> Floki.find("span.reputation-score")
+      |> Floki.text()
 
     "This answer was written by #{author_name} (reputation #{rep}) and received #{upvotes} upvotes."
   end

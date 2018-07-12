@@ -12,7 +12,7 @@ defmodule ExMustang.Responders.Quote do
   quote - Replies with a random quote.
   """
   hear ~r/^quote(!)?$/i, msg do
-    reply msg, random(quotes())
+    reply(msg, random(quotes()))
   end
 
   @doc """
@@ -20,15 +20,17 @@ defmodule ExMustang.Responders.Quote do
   """
   def run do
     conf = config()
+
     msg = %Hedwig.Message{
       type: "message",
       room: channel_id(conf[:slack_channel]),
       text: "<!channel> Quote of the day: " <> random(quotes())
     }
+
     send(msg)
   end
 
-  defp quotes, do: @quotes_file |> File.read! |> String.split("\n")
+  defp quotes, do: @quotes_file |> File.read!() |> String.split("\n")
 
   defp config, do: Application.get_env(:ex_mustang, ExMustang.Responders.Quote)
 end

@@ -8,16 +8,17 @@ defmodule ExMustang.Responders.GitTip do
   use Hedwig.Responder
 
   @tip_json "https://raw.githubusercontent.com/git-tips/tips/master/tips.json"
-  @tmpfile "#{System.tmp_dir}/git-tip-exmustang.json"
+  @tmpfile "#{System.tmp_dir()}/git-tip-exmustang.json"
 
   @usage """
   gittip [keyword] - Get a random git tip for given keyword
   """
   hear ~r/^gittip$/i, msg do
-    reply msg, (read_json() |> get_random())
+    reply(msg, read_json() |> get_random())
   end
+
   hear ~r/^gittip\s+(?<keyword>.*)$/i, msg do
-    reply msg, get_tip(msg.matches["keyword"])
+    reply(msg, get_tip(msg.matches["keyword"]))
   end
 
   def get_random(lst) do
@@ -29,6 +30,7 @@ defmodule ExMustang.Responders.GitTip do
 
   def get_tip(keyword) do
     keyword_lower = String.downcase(keyword)
+
     read_json()
     |> Enum.filter(fn x ->
       haystack = String.downcase(x["title"])
@@ -37,6 +39,7 @@ defmodule ExMustang.Responders.GitTip do
     |> case do
       [] ->
         "I could not find any git tips for : #{keyword}"
+
       result ->
         result
         |> get_random
@@ -45,9 +48,12 @@ defmodule ExMustang.Responders.GitTip do
 
   def format_msg(tip) do
     msg = "*#{tip["title"]}*\n`#{tip["tip"]}`"
+
     if is_list(tip["alternatives"]) do
-      alts = tip["alternatives"]
+      alts =
+        tip["alternatives"]
         |> Enum.join("\n")
+
       "#{msg}\nAlternatively, you can use following:\n```#{alts}```"
     else
       msg
@@ -59,20 +65,22 @@ defmodule ExMustang.Responders.GitTip do
 
     @tmpfile
     |> File.read!()
-    |> Poison.decode!
+    |> Poison.decode!()
   end
 
   def recent_json? do
     if File.exists?(@tmpfile) do
       mtime = File.stat!(@tmpfile).mtime
-      Timex.diff(Timex.now, mtime, :hours) < 24
+      Timex.diff(Timex.now(), mtime, :hours) < 24
     else
       false
     end
   end
 
   def download_json do
-    %HTTPoison.Response{body: json} = HTTPoison.get!(@tip_json, [useragent()], follow_redirect: true)
+    %HTTPoison.Response{body: json} =
+      HTTPoison.get!(@tip_json, [useragent()], follow_redirect: true)
+
     File.write!(@tmpfile, json)
   end
 end

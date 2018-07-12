@@ -29,7 +29,7 @@ defmodule ExMustang.Responders.HerokuDeploy do
   hdeploy <app-name> - Deploys configured branch to the given app
   """
   hear ~r/^hdeploy\s+(?<app_name>.*)$/i, msg do
-    reply msg, deploy(msg.matches["app_name"])
+    reply(msg, deploy(msg.matches["app_name"]))
   end
 
   defp deploy(app) do
@@ -46,9 +46,12 @@ defmodule ExMustang.Responders.HerokuDeploy do
     gh_client = Tentacat.Client.new(%{access_token: config()[:github_token]})
     [owner, repo] = String.split(detail[:repo], "/")
     branch = detail[:branch] || "master"
+
     case Tentacat.Repositories.Branches.find(owner, repo, branch, gh_client) do
       %{"commit" => %{"sha" => hash}} ->
-        {302, location} = Tentacat.Repositories.Contents.archive_link(owner, repo, "tarball", branch, gh_client)
+        {302, location} =
+          Tentacat.Repositories.Contents.archive_link(owner, repo, "tarball", branch, gh_client)
+
         heroku_request(app, hash, location)
 
       _ ->
@@ -60,10 +63,17 @@ defmodule ExMustang.Responders.HerokuDeploy do
     payload = %{
       source_blob: %{url: source, version: hash}
     }
+
     ep = "https://api.heroku.com/apps/#{app}/builds"
-    case HTTPoison.post(ep, Poison.encode!(payload), @headers ++ [{"authorization", "Bearer #{config()[:token]}"}]) do
+
+    case HTTPoison.post(
+           ep,
+           Poison.encode!(payload),
+           @headers ++ [{"authorization", "Bearer #{config()[:token]}"}]
+         ) do
       {:ok, %HTTPoison.Response{status_code: 201}} ->
         "I started deploying #{app} with commit hash #{hash}. Enjoy!!!"
+
       _ ->
         "I could not deploy #{app}"
     end

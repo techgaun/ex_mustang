@@ -2,25 +2,37 @@ defmodule ExMustang.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :ex_mustang,
-     version: "0.3.0",
-     elixir: "~> 1.3",
-     description: "A simple, clueless bot and collection of responders",
-     source_url: "https://github.com/techgaun/ex_mustang",
-     package: package(),
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     docs: [extras: ["README.md"]],
-     deps: deps()]
+    [
+      app: :ex_mustang,
+      version: "0.3.0",
+      elixir: "~> 1.3",
+      description: "A simple, clueless bot and collection of responders",
+      source_url: "https://github.com/techgaun/ex_mustang",
+      package: package(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      docs: [extras: ["README.md"]],
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :hedwig_slack, :quantum, :tentacat, :ex_google, :timex,
-                    :ex_pwned, :floki],
-     mod: {ExMustang, []}]
+    [
+      applications: [
+        :logger,
+        :hedwig_slack,
+        :quantum,
+        :tentacat,
+        :ex_google,
+        :timex,
+        :ex_pwned,
+        :floki
+      ],
+      mod: {ExMustang, []}
+    ]
   end
 
   # Dependencies can be Hex packages:

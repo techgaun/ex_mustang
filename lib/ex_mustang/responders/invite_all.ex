@@ -25,8 +25,9 @@ defmodule ExMustang.Responders.InviteAll do
         channel: dest_channel,
         user: m["id"]
       }
+
       headers = [{"Content-Type", "text/plain"}]
-      HedwigSlack.HTTP.post("/channels.invite", [query: query, headers: headers])
+      HedwigSlack.HTTP.post("/channels.invite", query: query, headers: headers)
     end)
   end
 end

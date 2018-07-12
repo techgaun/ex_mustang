@@ -5,6 +5,7 @@ defmodule ExMustang.Robot do
     if :undefined == :global.whereis_name(name) do
       :yes = :global.register_name(name, self())
     end
+
     {:ok, state}
   end
 end

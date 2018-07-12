@@ -12,6 +12,7 @@ defmodule ExMustang do
       # worker(ExMustang.Worker, [arg1, arg2, arg3]),
       worker(ExMustang.Robot, [])
     ]
+
     add_jobs()
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
@@ -21,42 +22,47 @@ defmodule ExMustang do
 
   def add_jobs do
     standup_config = Application.get_env(:ex_mustang, ExMustang.Responders.Standup)
+
     if standup_config[:enabled] do
       Quantum.add_job(:standup, %Quantum.Job{
         schedule: standup_config[:time_of_day],
-        task: fn -> ExMustang.Responders.Standup.run end
+        task: fn -> ExMustang.Responders.Standup.run() end
       })
     end
 
     gh_config = Application.get_env(:ex_mustang, ExMustang.Responders.Github)
+
     if gh_config[:enabled] do
       Quantum.add_job(:github_pr, %Quantum.Job{
         schedule: gh_config[:schedule],
-        task: fn -> ExMustang.Responders.Github.run end
+        task: fn -> ExMustang.Responders.Github.run() end
       })
     end
 
     pwned_config = Application.get_env(:ex_mustang, ExMustang.Responders.Pwned)
+
     if pwned_config[:enabled] do
       Quantum.add_job(:pwned_check, %Quantum.Job{
         schedule: pwned_config[:schedule],
-        task: fn -> ExMustang.Responders.Pwned.run end
+        task: fn -> ExMustang.Responders.Pwned.run() end
       })
     end
 
     uptime_config = Application.get_env(:ex_mustang, ExMustang.Responders.Uptime)
+
     if uptime_config[:enabled] do
       Quantum.add_job(:uptime_check, %Quantum.Job{
         schedule: uptime_config[:schedule],
-        task: fn -> ExMustang.Responders.Uptime.run end
+        task: fn -> ExMustang.Responders.Uptime.run() end
       })
     end
 
     quote_config = Application.get_env(:ex_mustang, ExMustang.Responders.Quote)
+
     if quote_config[:enabled] do
       Quantum.add_job(:quote_of_the_day, %Quantum.Job{
         schedule: quote_config[:schedule],
-        task: fn -> ExMustang.Responders.Quote.run end
+        task: fn -> ExMustang.Responders.Quote.run() end
       })
     end
   end

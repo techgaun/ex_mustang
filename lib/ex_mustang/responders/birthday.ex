@@ -32,10 +32,11 @@ defmodule ExMustang.Responders.Birthday do
   happy birthday <me|@user> - Send happy birthday message to the user mentioned
   """
   hear ~r/^happy\s?+birthday\s?+me.*$/i, msg do
-    emote msg, get_birthday_msg(msg.user.id)
+    emote(msg, get_birthday_msg(msg.user.id))
   end
+
   hear ~r/^happy\s?+birthday\s?+<@(?<user>\w+)>.*$/i, msg do
-    emote msg, get_birthday_msg(msg.matches["user"])
+    emote(msg, get_birthday_msg(msg.matches["user"]))
   end
 
   defp get_birthday_msg(user) do

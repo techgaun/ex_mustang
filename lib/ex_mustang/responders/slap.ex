@@ -33,12 +33,13 @@ defmodule ExMustang.Responders.Slap do
   slap - Slaps the user. Format: slap <username> | me
   """
   hear ~r/^slap\s*me/i, msg do
-    emote msg, build_msg(msg.user.id)
-    emote msg, random(@banters)
+    emote(msg, build_msg(msg.user.id))
+    emote(msg, random(@banters))
   end
+
   hear ~r/^slap\s*<@(?<user>\w+)>.*$/i, msg do
-    emote msg, build_msg(msg.matches["user"])
-    emote msg, random(@banters)
+    emote(msg, build_msg(msg.matches["user"]))
+    emote(msg, random(@banters))
   end
 
   defp build_msg(user) do

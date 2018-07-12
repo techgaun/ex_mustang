@@ -13,14 +13,16 @@ defmodule ExMustang.Responders.CLIFu do
   clifu [search_word] - get clifu gem (gives random clifu if no keyword is passed)
   """
   hear ~r/^clifu$/i, msg do
-    reply msg, fetch_clifu(@random_url)
+    reply(msg, fetch_clifu(@random_url))
   end
+
   hear ~r/^clifu\s+(?<query>\w+)$/i, msg do
-    clifu = msg.matches["query"]
+    clifu =
+      msg.matches["query"]
       |> build_url
       |> fetch_clifu
 
-    reply msg, clifu
+    reply(msg, clifu)
   end
 
   defp build_url(query) do
@@ -31,8 +33,9 @@ defmodule ExMustang.Responders.CLIFu do
     case HTTPoison.get(url, [useragent()], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
-        |> Poison.decode!
+        |> Poison.decode!()
         |> extract_clifu
+
       _ ->
         "I encountered problem getting clifu."
     end
@@ -41,6 +44,7 @@ defmodule ExMustang.Responders.CLIFu do
   defp extract_clifu(%{"command" => cmd, "summary" => summary, "url" => url}) do
     "#{summary}\n```#{cmd}```\nSource: #{url}"
   end
+
   defp extract_clifu(clifus) when is_list(clifus) do
     [clifu] = Enum.take_random(clifus, 1)
     extract_clifu(clifu)

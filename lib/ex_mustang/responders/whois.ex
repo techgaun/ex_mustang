@@ -11,13 +11,15 @@ defmodule ExMustang.Responders.Whois do
   whois <domain> - gives whois query for given domain
   """
   hear ~r/^whois\s+(?<domain>.*)$/i, msg do
-    reply msg, whois(msg.matches["domain"])
+    reply(msg, whois(msg.matches["domain"]))
   end
 
   defp whois(domain) do
-    domain = domain
+    domain =
+      domain
       |> parse_domain
       |> String.replace(~r|https?://|, "")
+
     domain
     |> get_url_with_token()
     |> fetch_whois(domain)
@@ -29,30 +31,40 @@ defmodule ExMustang.Responders.Whois do
         body
         |> Floki.find("pre")
         |> parse_record(domain)
+
       _ ->
         error(domain)
     end
   end
+
   defp fetch_whois(:error, domain), do: error(domain)
 
   defp get_url_with_token(domain) do
     case HTTPoison.get("#{@base_url}/#{domain}", [useragent()], follow_redirect: true) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body, headers: headers}} ->
         re = ~r|(https://dnsquery.org/whois,request/#{domain}/\w*)|
+
         case Regex.run(re, body) do
           ["https://dnsquery.org/whois,request/" <> _ = h | _t] ->
             {:ok, h, List.keyfind(headers, "Set-Cookie", 0)}
-          _ -> :error
+
+          _ ->
+            :error
         end
-      _ -> :error
+
+      _ ->
+        :error
     end
   end
 
   defp parse_record([], domain), do: "I did not find whois data for #{domain}."
+
   defp parse_record(record, domain) do
-    data = record
-      |> Floki.text
-      |> String.trim
+    data =
+      record
+      |> Floki.text()
+      |> String.trim()
+
     if String.length(data) === 0 do
       "I could not find whois data for #{domain}"
     else

@@ -6,15 +6,17 @@ defmodule ExMustang.Responders.Uptime do
   import ExMustang.Utils
 
   def run do
-    result = config()[:endpoints]
-      |> Stream.map(&(endpoint_check(&1)))
+    result =
+      config()[:endpoints]
+      |> Stream.map(&endpoint_check(&1))
       |> Stream.filter(&(length(&1) > 0))
-      |> Enum.map(&(Enum.join(&1, "\n")))
+      |> Enum.map(&Enum.join(&1, "\n"))
+
     if length(result), do: result |> Enum.join("\n\n") |> send_msg
   end
 
   defp endpoint_check(ep) do
-    method = (ep[:method] || "get") |> String.to_atom
+    method = (ep[:method] || "get") |> String.to_atom()
     headers = ep[:req_headers] || []
     timeout = ep[:timeout] || 10_000
     http_opts = [timeout: timeout, recv_timeout: timeout]
@@ -24,15 +26,22 @@ defmodule ExMustang.Responders.Uptime do
       {:ok, %HTTPoison.Response{body: body, headers: resp_headers, status_code: sc}} ->
         {_, actual_ctype} = List.keyfind(resp_headers, "Content-Type", 0, {nil, nil})
 
-        msg = if status_code_good?(ep[:status_code], sc), do: [],
-          else: ["HTTP Status Code mismatched: #{sc}(Actual) / #{ep[:status_code]}(Expected)"]
+        msg =
+          if status_code_good?(ep[:status_code], sc),
+            do: [],
+            else: ["HTTP Status Code mismatched: #{sc}(Actual) / #{ep[:status_code]}(Expected)"]
 
         msg = if body_good?(ep[:content], body), do: msg, else: ["Response body mismatched" | msg]
 
-        msg = if content_type_good?(ep[:content_type], actual_ctype), do: msg,
-          else: ["Content Type mismatched: #{actual_ctype}(Actual) / #{ep[:content_type]}(Expected)" | msg]
+        msg =
+          if content_type_good?(ep[:content_type], actual_ctype),
+            do: msg,
+            else: [
+              "Content Type mismatched: #{actual_ctype}(Actual) / #{ep[:content_type]}(Expected)"
+              | msg
+            ]
 
-        msg = msg |> Enum.reverse
+        msg = msg |> Enum.reverse()
         if length(msg) > 0, do: ["Uptime check for #{ep[:uri]} failed" | msg], else: msg
 
       {:error, %HTTPoison.Error{reason: _reason}} ->
@@ -44,6 +53,7 @@ defmodule ExMustang.Responders.Uptime do
   defp status_code_good?(expected, actual), do: expected === actual
 
   defp body_good?(nil, _), do: true
+
   defp body_good?(expected, actual) do
     if Regex.regex?(expected) do
       Regex.match?(expected, actual)
@@ -62,6 +72,7 @@ defmodule ExMustang.Responders.Uptime do
       room: channel_id(config()[:slack_channel]),
       text: text
     }
+
     send(msg)
   end
 
