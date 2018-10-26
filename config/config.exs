@@ -85,7 +85,9 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.GitTip, []},
     {ExMustang.Responders.Birthday, []},
     {ExMustang.Responders.HerokuDeploy, []},
-    {ExMustang.Responders.InviteAll, []}
+    {ExMustang.Responders.InviteAll, []},
+    {ExMustang.Responders.UrbanDictionary, []},
+    {ExMustang.Responders.ChuckMe, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
