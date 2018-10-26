@@ -8,9 +8,12 @@ defmodule ExMustang.Responders.UrbanDictionary do
   @feed_url "http://feeds.urbandictionary.com/UrbanWordOfTheDay"
 
   @usage """
-  Gets word of the day from urbandictionary
+  urbandictionary | udict - Gets word of the day from urbandictionary
   """
 
+  hear ~r/^udict$/i, msg do
+    reply(msg, get_ub_wotd())
+  end
   hear ~r/^urbandictionary$/i, msg do
     reply(msg, get_ub_wotd())
   end
