@@ -21,12 +21,13 @@ defmodule ExMustang.Responders.UrbanDictionary do
         case Fiet.parse(body) do
           {:ok, %Fiet.Feed{items: items}} ->
             "Word of the day is `#{hd(items).title}`\n#{hd(items).link}"
+
           _ ->
             "Urban Dictionary not available right now"
         end
+
       _ ->
         "Urban Dictionary not available right now"
     end
   end
-
 end
