@@ -1,4 +1,5 @@
-%{"calendar": {:hex, :calendar, "0.17.1", "5c7dfffde2b68011c2d6832ff1a15496292de965a3b57b3fad32405f1176f024", [:mix], [{:tzdata, "~> 0.5.8 or ~> 0.1.201603", [hex: :tzdata, optional: false]}]},
+%{
+  "calendar": {:hex, :calendar, "0.17.1", "5c7dfffde2b68011c2d6832ff1a15496292de965a3b57b3fad32405f1176f024", [:mix], [{:tzdata, "~> 0.5.8 or ~> 0.1.201603", [hex: :tzdata, optional: false]}]},
   "certifi": {:hex, :certifi, "0.7.0", "861a57f3808f7eb0c2d1802afeaae0fa5de813b0df0979153cbafcd853ababaf", [:rebar3], []},
   "combine": {:hex, :combine, "0.9.3", "192e609b48b3f2210494e26f85db1712657be1a8f15795656710317ea43fc449", [:mix], []},
   "cowlib": {:hex, :cowlib, "1.3.0", "6c80ca7f2863c0d7a21c946312baf473432b56a79e46e20bc27a3bac07c40439", [:make], []},
@@ -7,6 +8,7 @@
   "ex_google": {:hex, :ex_google, "0.1.0", "731b967a5c8bd5dea680ba29f303b3f1bc92d2883d58a68d0fe5dcda955109d4", [:mix], [{:httpoison, "~> 0.9.0", [hex: :httpoison, optional: false]}]},
   "ex_pwned": {:hex, :ex_pwned, "0.1.1", "cd8b2b0df0abc60f506f3909d1489465b3f5df84b5b9b52b9c3b6966a1b5856c", [:mix], [{:httpoison, "~> 0.9 or ~> 0.10", [hex: :httpoison, optional: false]}, {:poison, "~> 2.0 or ~> 3.0", [hex: :poison, optional: false]}]},
   "exjsx": {:hex, :exjsx, "3.2.1", "1bc5bf1e4fd249104178f0885030bcd75a4526f4d2a1e976f4b428d347614f0f", [:mix], [{:jsx, "~> 2.8.0", [hex: :jsx, optional: false]}]},
+  "fiet": {:hex, :fiet, "0.2.2", "d0a9fee5ac76ba169c6ece76544015b4208942e0b3d7a0917fdf678f620264f1", [:mix], [{:saxy, "~> 0.6.0", [hex: :saxy, repo: "hexpm", optional: false]}], "hexpm"},
   "floki": {:hex, :floki, "0.11.0", "b4532ab64d67225f13f5626e4ba1b8cf3ee9d5bd48017075bb975e1522efd32d", [:mix], [{:mochiweb, "~> 2.15", [hex: :mochiweb, optional: false]}]},
   "gettext": {:hex, :gettext, "0.12.2", "4f71a0df7b0bf5693419da593b4ddde558cc28e8f56a991fbfc2b51be1d5c848", [:mix], []},
   "gproc": {:hex, :gproc, "0.5.0", "2df2d886f8f8a7b81a4b04aa17972b5965bbc5bf0100ea6d8e8ac6a0e7389afe", [:rebar], []},
@@ -23,8 +25,10 @@
   "poison": {:hex, :poison, "3.1.0", "d9eb636610e096f86f25d9a46f35a9facac35609a7591b3be3326e99a0484665", [:mix], []},
   "quantum": {:hex, :quantum, "1.8.1", "37c9ad0307cf47bd578507ce1ddda98746199b281e8afe91cbe44c21d56af983", [:mix], [{:calendar, "~> 0.16", [hex: :calendar, optional: false]}]},
   "ranch": {:hex, :ranch, "1.1.0", "f7ed6d97db8c2a27cca85cacbd543558001fc5a355e93a7bff1e9a9065a8545b", [:make], []},
+  "saxy": {:hex, :saxy, "0.6.0", "cdb2f2fcd8133d1f3f8b0cf6a131ee1ca348dca613de266e9a239db850c4a093", [:mix], [], "hexpm"},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.1", "28a4d65b7f59893bc2c7de786dec1e1555bd742d336043fe644ae956c3497fbe", [:make, :rebar], []},
   "tentacat": {:git, "https://github.com/techgaun/tentacat.git", "c933dc3376226f2889a405ef397d362dd21effca", []},
   "timex": {:hex, :timex, "3.1.5", "413d6d8d6f0162a5d47080cb8ca520d790184ac43e097c95191c7563bf25b428", [:mix], [{:combine, "~> 0.7", [hex: :combine, optional: false]}, {:gettext, "~> 0.10", [hex: :gettext, optional: false]}, {:tzdata, "~> 0.1.8 or ~> 0.5", [hex: :tzdata, optional: false]}]},
   "tzdata": {:hex, :tzdata, "0.5.11", "3d5469a9f46bdf4a8760333dbdabdcc4751325035c454b10521f71e7c611ae50", [:mix], [{:hackney, "~> 1.0", [hex: :hackney, optional: false]}]},
-  "websocket_client": {:hex, :websocket_client, "1.2.1", "a965ce0be5583c90347400bceca66629e4debd5feb9bd516107e2924bdf39dad", [:rebar3], []}}
+  "websocket_client": {:hex, :websocket_client, "1.2.1", "a965ce0be5583c90347400bceca66629e4debd5feb9bd516107e2924bdf39dad", [:rebar3], []},
+}
