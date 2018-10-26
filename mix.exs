@@ -53,6 +53,7 @@ defmodule ExMustang.Mixfile do
       {:ex_google, "~> 0.1"},
       {:ex_pwned, "~> 0.1"},
       {:floki, "~> 0.11.0"},
+      {:fiet, "~> 0.2.1"},
       {:ex_doc, "~> 0.14.5", only: [:dev]}
     ]
   end

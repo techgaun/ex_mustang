@@ -126,6 +126,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.GitTip` - get a random git tip (with support for keywords)
 - `ExMustang.Responders.Birthday` - send a happy birthday to the mentioned user
 - `ExMustang.Responders.InviteAll` - invite all members (of optionally given channel)
+- `ExMustang.Responders.UrbanDictionary` - presents urban dictionary word of the day
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
