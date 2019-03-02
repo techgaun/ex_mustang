@@ -43,7 +43,7 @@ defmodule ExMustang.Responders.Uptime do
               | msg
             ]
 
-        msg = msg |> Enum.reverse()
+        msg = Enum.reverse(msg)
         if length(msg) > 0, do: ["Uptime check for #{ep[:uri]} failed" | msg], else: msg
 
       {:error, %HTTPoison.Error{reason: _reason}} ->
