@@ -6,13 +6,15 @@ defmodule ExMustang.Responders.Uptime do
   import ExMustang.Utils
 
   def run do
-    result =
-      config()[:endpoints]
-      |> Stream.map(&endpoint_check(&1))
-      |> Stream.filter(&(length(&1) > 0))
-      |> Enum.map(&Enum.join(&1, "\n"))
-
-    if length(result), do: result |> Enum.join("\n\n") |> send_msg
+    config()[:endpoints]
+    |> Stream.map(&endpoint_check(&1))
+    |> Stream.filter(&(length(&1) > 0))
+    |> Enum.map(&Enum.join(&1, "\n"))
+    |> case do
+      [_ | _] = result ->
+        result |> Enum.join("\n\n") |> send_msg()
+      _ -> :ok
+    end
   end
 
   defp endpoint_check(ep) do
@@ -45,7 +47,9 @@ defmodule ExMustang.Responders.Uptime do
         if length(msg) > 0, do: ["Uptime check for #{ep[:uri]} failed" | msg], else: msg
 
       {:error, %HTTPoison.Error{reason: reason}} ->
-        ["I encountered an error while performing uptime check on #{ep[:uri]} with reason: #{reason}"]
+        []
+        # need to do something about this
+        # ["I encountered an error while performing uptime check on #{ep[:uri]} with reason: #{reason}"]
     end
   end
 
