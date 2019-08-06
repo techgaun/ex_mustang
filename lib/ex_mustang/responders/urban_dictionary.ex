@@ -14,6 +14,7 @@ defmodule ExMustang.Responders.UrbanDictionary do
   hear ~r/^udict$/i, msg do
     reply(msg, get_ub_wotd())
   end
+
   hear ~r/^urbandictionary$/i, msg do
     reply(msg, get_ub_wotd())
   end

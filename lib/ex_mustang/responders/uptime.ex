@@ -13,7 +13,9 @@ defmodule ExMustang.Responders.Uptime do
     |> case do
       [_ | _] = result ->
         result |> Enum.join("\n\n") |> send_msg()
-      _ -> :ok
+
+      _ ->
+        :ok
     end
   end
 
