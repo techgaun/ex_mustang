@@ -28,7 +28,7 @@ defmodule ExMustang.Responders.Pwned do
       |> Enum.reduce([], fn account, msgs ->
         msgs =
           case Breaches.breachedaccount(account) do
-            {:ok, result, _} when length(result) > 0 ->
+            {:ok, [_ | _] = result, _} ->
               ["Your account #{account} has been breached.\n\n#{list_result(result)}" | msgs]
 
             _ ->
@@ -58,7 +58,7 @@ defmodule ExMustang.Responders.Pwned do
 
   defp build_msg(account) do
     case Breaches.breachedaccount(account) do
-      {:ok, result, _} when length(result) > 0 ->
+      {:ok, [_ | _] = result, _} ->
         "Oh no! Your account has been breached.\n\n#{list_result(result)}"
 
       {:ok, %{msg: "no breach was found for given input"}, _} ->
