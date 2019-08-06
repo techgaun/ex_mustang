@@ -11,13 +11,13 @@ defmodule ExMustang.Responders.TimeConvert do
     reply(msg, convert(msg.matches["ts"]))
   end
 
-  hear ~r/(?<ts>\b[0-9]{10,15}\b)/i, msg do
-    if String.starts_with?(msg.text, "unix2iso") do
-      :ok
-    else
-      reply(msg, "Looks like I got a timestamp there: #{convert(msg.matches["ts"])}")
-    end
-  end
+  # hear ~r/(?<ts>\b[0-9]{10,15}\b)/i, msg do
+  #   if String.starts_with?(msg.text, "unix2iso") do
+  #     :ok
+  #   else
+  #     reply(msg, "Looks like I got a timestamp there: #{convert(msg.matches["ts"])}")
+  #   end
+  # end
 
   defp convert(ts) when is_binary(ts) do
     ts
@@ -40,9 +40,9 @@ defmodule ExMustang.Responders.TimeConvert do
 
   defp type(ts) do
     cond do
-      String.length(ts) >= 15 -> :microseconds
-      String.length(ts) >= 12 -> :milliseconds
-      true -> :seconds
+      String.length(ts) >= 15 -> :microsecond
+      String.length(ts) >= 12 -> :millisecond
+      true -> :second
     end
   end
 end
