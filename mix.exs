@@ -4,8 +4,8 @@ defmodule ExMustang.Mixfile do
   def project do
     [
       app: :ex_mustang,
-      version: "0.3.0",
-      elixir: "~> 1.3",
+      version: "0.4.0",
+      elixir: "~> 1.8",
       description: "A simple, clueless bot and collection of responders",
       source_url: "https://github.com/techgaun/ex_mustang",
       package: package(),
@@ -21,15 +21,8 @@ defmodule ExMustang.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [
-      applications: [
-        :logger,
-        :hedwig_slack,
-        :quantum,
-        :tentacat,
-        :ex_google,
-        :timex,
-        :ex_pwned,
-        :floki
+      extra_applications: [
+        :logger
       ],
       mod: {ExMustang, []}
     ]
@@ -48,13 +41,14 @@ defmodule ExMustang.Mixfile do
     [
       {:hedwig_slack, "~> 1.0"},
       {:tentacat, github: "techgaun/tentacat"},
-      {:quantum, "~> 1.8.1"},
-      {:timex, "~> 3.1"},
-      {:ex_google, "~> 0.1"},
+      {:quantum, "~> 2.3"},
+      {:timex, "~> 3.6"},
+      {:ex_google, "~> 0.2"},
       {:ex_pwned, "~> 0.1"},
-      {:floki, "~> 0.11.0"},
-      {:fiet, "~> 0.2.1"},
-      {:ex_doc, "~> 0.14.5", only: [:dev]}
+      {:floki, "~> 0.23"},
+      {:fiet, "~> 0.2"},
+      {:httpoison, "~> 1.6", override: true},
+      {:ex_doc, "~> 0.21", only: [:dev]}
     ]
   end
 
