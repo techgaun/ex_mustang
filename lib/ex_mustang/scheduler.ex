@@ -7,10 +7,16 @@ defmodule ExMustang.Scheduler do
 
   require Logger
 
-  @spec add_job(String.t, Crontab.Expression.t, (() -> any) | tuple()) :: Quantum.Job.t
+  @spec add_job(String.t(), Crontab.Expression.t(), (() -> any) | tuple()) :: Quantum.Job.t()
   def add_job(name, expr, task) do
-    Logger.info "Creating cronjob #{name} with expression #{inspect expr} and task definition: #{inspect task}"
+    Logger.info(
+      "Creating cronjob #{name} with expression #{inspect(expr)} and task definition: #{
+        inspect(task)
+      }"
+    )
+
     expr = if is_binary(expr), do: CronParser.parse!(expr), else: expr
+
     Scheduler.new_job()
     |> Quantum.Job.set_name(name)
     |> Quantum.Job.set_schedule(expr)
