@@ -2,6 +2,7 @@ defmodule ExMustang.Responders.ChuckMe do
   @moduledoc """
   Tells a random Chuck Norris joke from icndb.com
   """
+
   use Hedwig.Responder
   import ExMustang.Utils, only: [useragent: 0]
 

@@ -1,7 +1,8 @@
 defmodule ExMustang.Responders.TimeConvert do
   @moduledoc """
-  Time conversion related stuff.
+  Responder to convert different time formats
   """
+
   use Hedwig.Responder
 
   @usage """
