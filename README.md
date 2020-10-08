@@ -31,6 +31,7 @@ A sample runner configuration looks like below:
 export SLACK_API_TOKEN="<SLACK_API_TOKEN<"
 export GITHUB_TOKEN="<GITHUB_TOKEN>"
 export GOOGLE_API_KEY="<GOOGLE_API_KEY>"
+export GIPHY_API_KEY="<GIPHY_API_KEY>"
 export STANDUP_CHANNEL="scrum"
 export GH_CHANNEL="github"
 export PWN_CHANNEL="critical"
@@ -127,6 +128,7 @@ Currently, there are following responders and these should ideally work with any
 - `ExMustang.Responders.Birthday` - send a happy birthday to the mentioned user
 - `ExMustang.Responders.InviteAll` - invite all members (of optionally given channel)
 - `ExMustang.Responders.UrbanDictionary` - presents urban dictionary word of the day
+- `ExMustang.Responders.Giphy` - renders gif using https://giphy.com
 
 For Google Maps search, you have to set `GOOGLE_API_KEY` which has access to call google places api.
 
@@ -152,6 +154,7 @@ gittip [keyword] - Get a random git tip for given keyword
 happy birthday <me|@user> - Send happy birthday message to the user mentioned
 hdeploy <app-name> - Deploys configured branch to the given app
 inviteall [src_channel] - invite all the members of source channel
+giphy [search_term] - Tries to find a GIF matching search_term (gives random gif if no search_term is provided)
 ```
 
 #### Heroku Deployment

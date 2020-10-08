@@ -87,7 +87,8 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.HerokuDeploy, []},
     {ExMustang.Responders.InviteAll, []},
     {ExMustang.Responders.UrbanDictionary, []},
-    {ExMustang.Responders.ChuckMe, []}
+    {ExMustang.Responders.ChuckMe, []},
+    {ExMustang.Responders.Giphy, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
@@ -95,6 +96,8 @@ config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
 config :ex_google,
   api_key: System.get_env("GOOGLE_API_KEY"),
   output: "json"
+
+config :ex_mustang, ExMustang.Responders.Giphy, api_key: System.get_env("GIPHY_API_KEY")
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
